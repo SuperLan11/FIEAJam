@@ -177,9 +177,7 @@ public class GridDisplay : MonoBehaviour
     private List<Monster> passengers;
 
     public void Send()
-    {
-        passengers.ForEach(monster => Destroy(monster.gameObject));
-        passengers.Clear();
+    {        
         int filled = 0;
         int total = 0;
         foreach (var row in free)
@@ -211,9 +209,11 @@ public class GridDisplay : MonoBehaviour
             Vector2 endPos = transform.position;
             endPos.x = endX + 0.1f;
             transform.position = Vector2.Lerp(transform.position, endPos, cartAccel);
-        }
+        }        
         // teleport then come back
         transform.position = returnPos;
+        passengers.ForEach(monster => Destroy(monster.gameObject));
+        passengers.Clear();
 
         while (transform.position.x < startPos.x)
         {
