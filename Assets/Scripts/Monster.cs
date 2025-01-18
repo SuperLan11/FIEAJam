@@ -61,7 +61,7 @@ public class Monster : MonoBehaviour
 				continue;
 			}
 
-			Vector2 pos = display.AttemptSnap(transform.position, grid, out bool found);
+			Vector2 pos = display.AttemptRide(this, out bool found);
 			if (found)
 			{
 				transform.position = pos;

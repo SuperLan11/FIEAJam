@@ -47,18 +47,56 @@ public class GridDisplay : MonoBehaviour
             grid.Add(row);
         }
         
+        ResetFree();
+        passengers = new();
+    }
+
+    private void ResetFree()
+    {
+        free = new();
         grid.ForEach((item) =>
         {
             free.Add(new List<bool>(item));
         });
     }
+
+    public int GetProfit(int filled, int total)
+    {
+        return filled;
+    }
+
+    private List<Monster> passengers;
+
+    public void Send()
+    {
+        passengers.ForEach(monster => Destroy(monster.gameObject));
+        passengers.Clear();
+        int filled = 0;
+        int total = 0;
+        foreach (var row in free)
+        {
+            foreach (bool elem in row)
+            {
+                total++;
+                if (!elem)
+                {
+                    filled++;
+                }
+            }
+        }
+
+        MoneyCounter.money += GetProfit(filled, total);
+        ResetFree();
+    }
     
-    //given the bottom-right corner of a thing, get the place where
+    //given the bottom-right corner of a monster, get the place where
     //it would snap to on the grid, or return null if it's
     //out of bounds or unable to be placed
-    //has side effects if found a position, changing the occupied array
-    public Vector2 AttemptSnap(Vector2 position, List<List<bool>> shape, out bool found)
+    //if found, registers the monster as on the ride
+    public Vector2 AttemptRide(Monster monster, out bool found)
     {
+        Vector2 position = monster.transform.position;
+        var shape = monster.grid;
         foreach (var record in tiles)
         {
             var tile = record.Value;
@@ -113,6 +151,7 @@ public class GridDisplay : MonoBehaviour
                             free[-shape.Count + 1 + i + tileI][j+tileJ] = false;
                         }
                     }
+                    passengers.Add(monster);
                 }
                 
                 return tilePos;
