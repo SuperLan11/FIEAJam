@@ -36,6 +36,7 @@ public class MouseHandler : MonoBehaviour
                         monster.StartDrag();
                         draggedMonster = monster;
                         dragInProgress = true;
+                        break;
                     }
                 }
             }
