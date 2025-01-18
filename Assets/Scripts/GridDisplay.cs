@@ -112,7 +112,16 @@ public class GridDisplay : MonoBehaviour
 
     public int GetProfit(int filled, int total)
     {
-        return filled;
+        int profit = 0;
+        for (int i = 0; i < filled; i++)
+        {
+            profit += UnityEngine.Random.Range(6, 9);
+        }
+        if (filled == total)
+        {
+            profit += 10;
+        }
+        return profit;
     }
 
     private List<Monster> passengers;
