@@ -282,23 +282,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1996798733 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 338405821205153587, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-  m_PrefabInstance: {fileID: 1589481013393085342}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1996798737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996798733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f563c9f75152ec4fba25835acd07656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1589481013393085342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -307,9 +290,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 338405821205153587, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_Name
-      value: MoneyText
+    - target: {fileID: 419506884408505176, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: upgradeText
+      value: 'Buy Disney: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056369582780120722, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821307020874557128, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: upgradeText
+      value: 'Bigger Cart: '
       objectReference: {fileID: 0}
     - target: {fileID: 2782067390129661861, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
       propertyPath: m_AnchorMax.y
@@ -407,6 +398,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4771516931875948501, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771516931875948501, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771516931875948501, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771516931875948501, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6819332754075980357, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -423,69 +430,27 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8201528836054399935, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1589481013393085343}
-    - target: {fileID: 8201528836054399935, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyItem
+    - target: {fileID: 7025146591814472488, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: upgradeText
+      value: 'More Carts: '
       objectReference: {fileID: 0}
-    - target: {fileID: 8201528836054399935, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShopItem, Assembly-CSharp
+    - target: {fileID: 7557834059706496627, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_text
+      value: 'Buy Disney: 9999999'
       objectReference: {fileID: 0}
-    - target: {fileID: 8201528836054399935, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+    - target: {fileID: 7557834059706496627, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_margin.z
+      value: -245.83159
       objectReference: {fileID: 0}
     - target: {fileID: 8261828420050855254, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
       propertyPath: m_Name
-      value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 109
-      objectReference: {fileID: 0}
-    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -32
+      value: CanvasUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 338405821205153587, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1996798737}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
---- !u!114 &1589481013393085343 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1821307020874557128, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
-  m_PrefabInstance: {fileID: 1589481013393085342}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe2e5b048ea1fc47b9afab3a41e52ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
