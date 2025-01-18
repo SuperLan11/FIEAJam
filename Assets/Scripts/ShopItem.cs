@@ -8,6 +8,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private string upgradeText;
     private AudioSource buySfx;
+    [SerializeField] private string upgrade;    
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,7 @@ public class ShopItem : MonoBehaviour
     }
 
     public void BuyItem()
-    {
-        Debug.Log("button clicked");
+    {        
         if (MoneyCounter.money >= cost)
         {
             MoneyCounter.SetMoney(MoneyCounter.money - cost);
@@ -26,6 +26,11 @@ public class ShopItem : MonoBehaviour
             transform.GetComponentInChildren<TextMeshProUGUI>().text = upgradeText + cost;
             if(buySfx != null)
                 buySfx.Play();
+
+            if(upgrade == "size")
+            {
+                FindObjectOfType<GridDisplay>().UpgradeSize(6);
+            }
         }
     }
 

@@ -128,14 +128,17 @@ public class GridDisplay : MonoBehaviour
     {
         if(numTiles == 6)
         {
+            Debug.Log("changed shape");
             shape = "XXX\nXXX\nXXX";
         }
         else if(numTiles == 9)
         {
+            Debug.Log("changed shape");
             shape = "XXXX\nXXXX\nXXXX";
         }
         else if(numTiles == 12)
         {
+            Debug.Log("changed shape");
             shape = "XXXX\nXXXX\nXXXX\nXXXX";
         }
         grid = new();

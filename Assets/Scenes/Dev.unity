@@ -204,6 +204,10 @@ PrefabInstance:
       value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 1821307020874557128, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: upgrade
+      value: size
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821307020874557128, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
       propertyPath: upgradeText
       value: 'Bigger Cart: '
       objectReference: {fileID: 0}
