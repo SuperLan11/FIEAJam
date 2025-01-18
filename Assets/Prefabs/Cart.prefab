@@ -44,11 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca78660a20854f0e881a9c2463937c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shape: 'X.
+  shape: 'XXXX
 
-    XX
-
-    X.'
-  tiles: []
+    XXXX'
   tilePrefab: {fileID: 1474303913138067303, guid: c1df9c485b976056786679af81508cdb, type: 3}
   isTargetable: 1

@@ -25,7 +25,7 @@ public class ShopItem : MonoBehaviour
     {        
         if (MoneyCounter.money >= cost)
         {
-            MoneyCounter.SetMoney(MoneyCounter.money - cost);
+            MoneyCounter.money -= cost;
             cost += 5;
             transform.GetComponentInChildren<TextMeshProUGUI>().text = upgradeText + cost;
             if(buySfx != null)

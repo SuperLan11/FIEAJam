@@ -11,8 +11,12 @@ public class Monster : MonoBehaviour
 	public string shape;
 	public List<List<bool>> grid;
 
+	private static int idCounter = 0;
+	public int id = 0;
+
 	public void Start()
 	{
+		id = ++idCounter;
 		var rows = shape.Trim().Split();
 		int height = rows.Length;
 		int width = rows[0].Length;
@@ -47,13 +51,14 @@ public class Monster : MonoBehaviour
 		Vector2 mousePos = GetMousePosition();
 		Vector2 delta = mousePos - (Vector2)transform.position;
 		dragDelta = delta;
-
+		GetComponentInChildren<SpriteRenderer>().sortingLayerName = "monsterDragging";
 		snapSfx = GetComponent<AudioSource>();
 	}
 
 	public void EndDrag()
 	{
 		isDragging = false;
+		GetComponentInChildren<SpriteRenderer>().sortingLayerName = "monster";
 		foreach (GridDisplay display in FindObjectsOfType<GridDisplay>())
 		{
 			if (!display.isTargetable)
@@ -61,7 +66,7 @@ public class Monster : MonoBehaviour
 				continue;
 			}
 
-			Vector2 pos = display.AttemptSnap(transform.position, grid, out bool found);
+			Vector2 pos = display.AttemptRide(this, out bool found);
 			if (found)
 			{
 				transform.position = pos;

@@ -50,3 +50,6 @@ TagManager:
   - name: monster
     uniqueID: 3571906801
     locked: 0
+  - name: monsterDragging
+    uniqueID: 362561131
+    locked: 0

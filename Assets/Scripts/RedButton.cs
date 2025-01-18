@@ -5,6 +5,7 @@ using UnityEngine;
 public class RedButton : MonoBehaviour
 {
     private AudioSource buttonSfx;
+    public GridDisplay cart;
 
     // Start is called before the first frame update
     void Start()
@@ -12,10 +13,11 @@ public class RedButton : MonoBehaviour
         buttonSfx = GetComponent<AudioSource>();
     }
 
-    private void OnMouseDown()
+    public void Click()
     {        
         buttonSfx.Play();
-        Coaster.isLeaving = true;        
+        Coaster.isLeaving = true;
+        cart.Send();
     }
 
     // Update is called once per frame
