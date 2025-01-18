@@ -11,7 +11,8 @@ public class GridDisplay : MonoBehaviour
     //. = empty
     //X = full
 
-    public static int numTiles = 5;
+    public SpriteRenderer[] cartSprites;
+    public int visibleCarts = 3;
 
     public List<List<bool>> grid = new();
     //0 = nothing
@@ -24,6 +25,8 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
+        cartSprites = FindObjectOfType<GridDisplay>().GetComponentsInChildren<SpriteRenderer>();
+
         var rows = shape.Trim().Split();
         int height = rows.Length;
         int width = rows[0].Length;
@@ -210,6 +213,11 @@ public class GridDisplay : MonoBehaviour
         {            
             shape = "XXXXX\nXXXXX\nXXXXX\nXXXXX";
         }
+        ResetShape();
+    }
+
+    public void ResetShape()
+    {
         grid = new();
         free = new();
         tiles = new();

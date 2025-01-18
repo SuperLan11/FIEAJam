@@ -27,6 +27,30 @@ public class ShopItem : MonoBehaviour
         levelLabel = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
+    private void AppendCart()
+    {
+        GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
+
+        if (cartGroup.visibleCarts < cartGroup.cartSprites.Length)
+        {
+            cartGroup.cartSprites[cartGroup.visibleCarts].enabled = true;
+            cartGroup.visibleCarts++;
+        }
+
+        string curShape = cartGroup.shape;
+        string newShape = "";
+
+        for (int i = 0; i < cartGroup.shape.Length; i++)
+        {
+            // add an extra X just before new line
+            if (cartGroup.shape[i] == '\n' || i == cartGroup.shape.Length - 1)
+                newShape += 'X';
+            newShape += cartGroup.shape[i];
+        }
+        cartGroup.shape = newShape;
+        cartGroup.ResetShape();
+    }
+
     public void BuyItem()
     {        
         if (MoneyCounter.money >= cost)
@@ -50,9 +74,8 @@ public class ShopItem : MonoBehaviour
                     FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[upgradeLevel]);
             }
             else if (upgrade == "Extend Cart")
-            {
-                Debug.Log("more carts");                
-                //Instantiate(cartPrefab, )
+            {                                
+                AppendCart();
             }
             else if (upgrade == "Line Capacity")
             {
