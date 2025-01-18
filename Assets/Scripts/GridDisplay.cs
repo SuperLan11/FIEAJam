@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridDisplay : MonoBehaviour
@@ -11,8 +12,9 @@ public class GridDisplay : MonoBehaviour
     //X = full
 
     public List<List<bool>> grid = new();
+    public List<List<bool>> free = new();
 
-    public List<GameObject> tiles;
+    public Dictionary<(int, int), GameObject> tiles = new();
     public GameObject tilePrefab;
     //true means monsters can be dragged here
     public bool isTargetable = false;
@@ -35,23 +37,84 @@ public class GridDisplay : MonoBehaviour
                     float y = (height - i - 1) + 0.5f;
                     GameObject tile = Instantiate(tilePrefab, transform);
                     tile.transform.localPosition = new Vector2(x, y);
-                    tiles.Add(tile);
+                    tiles.Add((i, j), tile);
+                }
+                else
+                {
+                    tiles.Add((i, j), null);
                 }
             }
+            grid.Add(row);
         }
+        
+        grid.ForEach((item) =>
+        {
+            free.Add(new List<bool>(item));
+        });
     }
     
     //given the bottom-right corner of a thing, get the place where
     //it would snap to on the grid, or return null if it's
-    //out of bounds
-    public Vector2 GetSnapPosition(Vector2 position, out bool found)
+    //out of bounds or unable to be placed
+    //has side effects if found a position, changing the occupied array
+    public Vector2 AttemptSnap(Vector2 position, List<List<bool>> shape, out bool found)
     {
-        foreach (GameObject tile in tiles)
+        foreach (var record in tiles)
         {
+            var tile = record.Value;
+            if (tile ==null)
+            {
+                continue;
+            }
             Vector2 tilePos = tile.transform.position;
             if (Mathf.Abs(tilePos.x - position.x) <= 0.5f && Mathf.Abs(tilePos.y - position.y) <= 0.5f)
             {
+                (int, int) pos = record.Key;
+                int tileI = pos.Item1;
+                int tileJ = pos.Item2;
+                
                 found = true;
+                for (int i = 0; i < shape.Count; i++)
+                {
+                    for (int j = 0; j < shape[0].Count; j++)
+                    {
+                        if (!shape[i][j])
+                        {
+                            continue;
+                        }
+                        int newI = tileI - shape.Count + 1 + i;
+                        int newJ = j + tileJ;
+
+                        if (newI < 0)
+                        {
+                            found = false;
+                            break;
+                        }
+
+                        if (newJ >= grid[0].Count)
+                        {
+                            found = false;
+                            break;
+                        }
+
+                        if (!free[newI][newJ])
+                        {
+                            found = false;
+                        }
+                    }
+                }
+
+                if (found)
+                {
+                    for (int i = 0; i < shape.Count; i++)
+                    {
+                        for (int j = 0; j < shape.Count; j++)
+                        {
+                            free[-shape.Count + 1 + i + tileI][j+tileJ] = false;
+                        }
+                    }
+                }
+                
                 return tilePos;
             }
         }
