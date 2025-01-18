@@ -14,6 +14,8 @@ public class Monster : MonoBehaviour
 	private static int idCounter = 0;
 	public int id = 0;
 
+	private SpriteRenderer sprite;
+
 	public void Start()
 	{
 		id = ++idCounter;
@@ -31,6 +33,8 @@ public class Monster : MonoBehaviour
 			}
 			grid.Add(row);
 		}
+
+		sprite = GetComponentInChildren<SpriteRenderer>();
 	}
 
 	// variables added to move monsters in line
@@ -39,7 +43,7 @@ public class Monster : MonoBehaviour
 	Vector3 movePos = Vector3.zero;
 	
 	private static float moveAccel = 0.1f;
-	private static float monsterSpacing = 2f;
+	private static float monsterSpacing = 0.5f;
 
 	private AudioSource snapSfx;
 	
@@ -77,6 +81,9 @@ public class Monster : MonoBehaviour
 					isPlaced = true;
 					AdvanceLine();
 				}				
+
+				if(FindObjectsOfType<Monster>().Length == 0)                
+					PlaceMonsters();                
 				
 				if(snapSfx != null)
 					snapSfx.Play();
@@ -88,22 +95,23 @@ public class Monster : MonoBehaviour
 		transform.position = originalPos;
 	}
 
+	private void PlaceMonsters()
+    {
+
+    }
+
 	private void AdvanceLine()
     {		
 		Monster[] monsters = FindObjectsOfType<Monster>();
 		foreach (Monster monster in monsters)
-		{
-			Debug.Log("originalPos.x: " + originalPos.x);
+		{			
 			bool monsterOnRight = (!monster.isPlaced && monster.transform.position.x > originalPos.x);
-			if (monster.isPlaced || monsterOnRight)
-			{
-				Debug.Log(monster.name + " should not move");
-				continue;
-			}
+			if (monster.isPlaced || monsterOnRight)			
+				continue;			
 			
 			monster.isMoving = true;
 			monster.movePos = monster.transform.position;
-			monster.movePos.x += monsterSpacing;
+			monster.movePos.x += (sprite.size.x + monsterSpacing);
 		}
 	}
 
