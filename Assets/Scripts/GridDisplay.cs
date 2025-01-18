@@ -15,6 +15,11 @@ public class GridDisplay : MonoBehaviour
     public SpriteRenderer[] cartSprites;
     [SerializeField] private Sprite cart3xSprite;
     [SerializeField] private Sprite cart4xSprite;
+
+    [SerializeField] private SpriteRenderer cartFront;
+    [SerializeField] private Sprite cart3xFront;
+    [SerializeField] private Sprite cart4xFront;
+    
     public int visibleCarts = 4;
     public int curCartHeight = 2;
 
@@ -69,6 +74,9 @@ public class GridDisplay : MonoBehaviour
             visibleCarts++;
             cartSprites[visibleCarts].enabled = true;
         }
+        Vector2 newFrontPos = cartFront.transform.position;
+        newFrontPos.x += 1f;
+        cartFront.transform.position = newFrontPos;
 
         string curShape = shape;
         string newShape = "";
@@ -101,20 +109,29 @@ public class GridDisplay : MonoBehaviour
 
             newShape += 'X';
             if (curCartHeight == 3)
-            {
+            {                
                 cartSprite.sprite = cart3xSprite;
+                cartFront.sprite = cart3xFront;
             }
             else if (curCartHeight == 4)
-            {                
+            {                                
                 cartSprite.sprite = cart4xSprite;
-            }
+                cartFront.sprite = cart4xFront;
+                GameObject.Find("Enlarge Cart").GetComponent<TextMeshProUGUI>().text = "MAX";
+                GameObject.Find("Enlarge Cart Price").GetComponent<TextMeshProUGUI>().text = "";
+            }            
+
             Vector2 newSpritePos = cartSprite.transform.position;
             newSpritePos.y += 0.5f;
-            cartSprite.transform.position = newSpritePos;
+            cartSprite.transform.position = newSpritePos;            
         }
         Vector2 newGroupPos = transform.position;
         newGroupPos.y -= 0.5f;
         transform.position = newGroupPos;
+
+        Vector2 newFrontPos = cartFront.transform.position;
+        newFrontPos.y += 0.5f;
+        cartFront.transform.position = newFrontPos;
 
         shape = newShape;
         ResetShape();
