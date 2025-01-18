@@ -100,4 +100,9 @@ public class Monster : MonoBehaviour
 	{
 		movementQueue.Enqueue(pos);
 	}
+
+	public void UnGray()
+	{
+		GetComponentInChildren<SpriteRenderer>().color = Color.white;
+	}
 }

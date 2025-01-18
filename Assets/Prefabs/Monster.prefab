@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 476ccf243c875c1b1bbb6cdf6a07492d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5599722, g: 0.5599722, b: 0.5599722, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -178,4 +178,4 @@ MonoBehaviour:
   isDragging: 0
   dragDelta: {x: 0, y: 0}
   shape: X
-  isMoving: 0
+  id: 0
