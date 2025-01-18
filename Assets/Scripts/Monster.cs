@@ -11,8 +11,12 @@ public class Monster : MonoBehaviour
 	public string shape;
 	public List<List<bool>> grid;
 
+	private static int idCounter = 0;
+	public int id = 0;
+
 	public void Start()
 	{
+		id = ++idCounter;
 		var rows = shape.Trim().Split();
 		int height = rows.Length;
 		int width = rows[0].Length;

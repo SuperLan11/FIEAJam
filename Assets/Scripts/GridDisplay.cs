@@ -12,7 +12,9 @@ public class GridDisplay : MonoBehaviour
     //X = full
 
     public List<List<bool>> grid = new();
-    public List<List<bool>> free = new();
+    //0 = nothing
+    //other = monster ID
+    public List<List<int>> free = new();
 
     public Dictionary<(int, int), GameObject> tiles = new();
     public GameObject tilePrefab;
@@ -51,12 +53,19 @@ public class GridDisplay : MonoBehaviour
         passengers = new();
     }
 
+    private List<int> gridrowToFreerow(List<bool> gridrow)
+    {
+        List<int> freerow = new();
+        gridrow.ForEach((element) => freerow.Add(element ? 0 : -1));
+        return freerow;
+    }
+
     private void ResetFree()
     {
         free = new();
-        grid.ForEach((item) =>
+        grid.ForEach((row) =>
         {
-            free.Add(new List<bool>(item));
+            free.Add(gridrowToFreerow(row));
         });
     }
 
@@ -75,10 +84,10 @@ public class GridDisplay : MonoBehaviour
         int total = 0;
         foreach (var row in free)
         {
-            foreach (bool elem in row)
+            foreach (int elem in row)
             {
                 total++;
-                if (!elem)
+                if (elem != 0)
                 {
                     filled++;
                 }
@@ -87,6 +96,20 @@ public class GridDisplay : MonoBehaviour
 
         MoneyCounter.money += GetProfit(filled, total);
         ResetFree();
+    }
+
+    private void ClearMonster(Monster monster)
+    {
+        foreach (var row in free)
+        {
+            for (var i = 0; i < row.Count; i++)
+            {
+                if (row[i] == monster.id)
+                {
+                    row[i] = 0;
+                }
+            }
+        }
     }
     
     //given the bottom-right corner of a monster, get the place where
@@ -135,7 +158,7 @@ public class GridDisplay : MonoBehaviour
                             break;
                         }
 
-                        if (!free[newI][newJ])
+                        if (free[newI][newJ] != 0 && free[newI][newJ] != monster.id)
                         {
                             found = false;
                         }
@@ -144,14 +167,18 @@ public class GridDisplay : MonoBehaviour
 
                 if (found)
                 {
+                    ClearMonster(monster);
+                    if (!passengers.Contains(monster))
+                    {
+                        passengers.Add(monster);
+                    }
                     for (int i = 0; i < shape.Count; i++)
                     {
                         for (int j = 0; j < shape[0].Count; j++)
                         {
-                            free[-shape.Count + 1 + i + tileI][j+tileJ] = false;
+                            free[-shape.Count + 1 + i + tileI][j+tileJ] = monster.id;
                         }
                     }
-                    passengers.Add(monster);
                 }
                 
                 return tilePos;
