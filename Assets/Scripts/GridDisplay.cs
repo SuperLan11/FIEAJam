@@ -12,7 +12,10 @@ public class GridDisplay : MonoBehaviour
     //X = full
 
     public SpriteRenderer[] cartSprites;
-    public int visibleCarts = 3;
+    [SerializeField] private Sprite cart3xSprite;
+    [SerializeField] private Sprite cart4xSprite;
+    public int visibleCarts = 4;
+    public int curCartHeight = 2;
 
     public List<List<bool>> grid = new();
     //0 = nothing
@@ -58,6 +61,39 @@ public class GridDisplay : MonoBehaviour
         passengers = new();
     }
 
+    public void UpgradeHeight()
+    {
+        if (curCartHeight >= 4)
+            return;
+
+        string newShape = shape;
+        newShape += '\n';
+
+        curCartHeight++;
+        foreach (SpriteRenderer cartSprite in cartSprites)
+        {
+            newShape += 'X';
+            if (curCartHeight == 3)
+            {
+                cartSprite.sprite = cart3xSprite;
+            }
+            else if (curCartHeight == 4)
+            {
+                if (cart4xSprite != null)
+                    cartSprite.sprite = cart4xSprite;
+            }
+            Vector2 newSpritePos = cartSprite.transform.position;
+            newSpritePos.y += 0.5f;
+            cartSprite.transform.position = newSpritePos;
+        }
+        Vector2 newGroupPos = transform.position;
+        newGroupPos.y -= 0.5f;
+        transform.position = newGroupPos;
+
+        shape = newShape;
+        ResetShape();
+    }
+
     private List<int> gridrowToFreerow(List<bool> gridrow)
     {
         List<int> freerow = new();
@@ -76,7 +112,16 @@ public class GridDisplay : MonoBehaviour
 
     public int GetProfit(int filled, int total)
     {
-        return filled;
+        int profit = 0;
+        for (int i = 0; i < filled; i++)
+        {
+            profit += UnityEngine.Random.Range(6, 9);
+        }
+        if (filled == total)
+        {
+            profit += 10;
+        }
+        return profit;
     }
 
     private List<Monster> passengers;
