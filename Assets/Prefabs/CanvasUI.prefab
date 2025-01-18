@@ -1226,6 +1226,7 @@ GameObject:
   - component: {fileID: 6262071349506905780}
   - component: {fileID: 5122162301859935949}
   - component: {fileID: 8412474144176114009}
+  - component: {fileID: 5259373971934555444}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1310,6 +1311,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &5259373971934555444
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348860828258143824}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3160815348459317213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,7 +3238,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3582,7 +3628,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6277076663970014345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2632973180539492341}
+        m_TargetAssemblyTypeName: RedButton, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6354047967460983905
 GameObject:
   m_ObjectHideFlags: 0
@@ -5317,7 +5375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7402146177428615094, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -290.90002
+      value: -529.8334
       objectReference: {fileID: 0}
     - target: {fileID: 7402146177428615094, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5367,7 +5425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3037285893179004657, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.289978
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5506974272124935696, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_text
@@ -5513,11 +5571,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3037285893179004657, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.12
+      value: 0.120000005
       objectReference: {fileID: 0}
     - target: {fileID: 3037285893179004657, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.3399963
+      value: -1.2999878
       objectReference: {fileID: 0}
     - target: {fileID: 5506974272124935696, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_text
@@ -5617,7 +5675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7402146177428615094, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -205.70001
+      value: -325.1667
       objectReference: {fileID: 0}
     - target: {fileID: 7402146177428615094, guid: 2632c74927b50354d8083a5139979b62, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

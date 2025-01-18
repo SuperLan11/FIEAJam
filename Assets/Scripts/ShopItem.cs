@@ -9,8 +9,7 @@ public class ShopItem : MonoBehaviour
     private TextMeshProUGUI costLabel;    
     private AudioSource buySfx;
     private string upgrade;
-    private TextMeshProUGUI levelLabel;
-    [SerializeField] private GameObject cartPrefab;
+    private TextMeshProUGUI levelLabel;    
 
     // the number represents the total number of tiles
     private int[] sizeUpgrades = { 8, 12, 16, 25 };
@@ -40,12 +39,12 @@ public class ShopItem : MonoBehaviour
         string curShape = cartGroup.shape;
         string newShape = "";
 
-        for (int i = 0; i < cartGroup.shape.Length; i++)
+        for (int i = 0; i < curShape.Length; i++)
         {
             // add an extra X just before new line
-            if (cartGroup.shape[i] == '\n' || i == cartGroup.shape.Length - 1)
+            if (curShape[i] == '\n' || i == curShape.Length - 1)
                 newShape += 'X';
-            newShape += cartGroup.shape[i];
+            newShape += curShape[i];
         }
         cartGroup.shape = newShape;
         cartGroup.ResetShape();
@@ -65,21 +64,25 @@ public class ShopItem : MonoBehaviour
             upgradeLevel++;
             levelLabel.text = "LV " + upgradeLevel;
 
+            GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
+
             if (upgrade == "Enlarge Cart")
             {
                 // don't make size upgrade go out of bounds
-                if (upgradeLevel >= sizeUpgrades.Length)                    
-                    FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[sizeUpgrades.Length-1]);
+                /*if (upgradeLevel >= sizeUpgrades.Length)                    
+                    cartGroup.UpgradeSize(sizeUpgrades[sizeUpgrades.Length-1]);
                 else
-                    FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[upgradeLevel]);
+                    cartGroup.UpgradeSize(sizeUpgrades[upgradeLevel]);*/
+
+                cartGroup.UpgradeHeight();                
             }
             else if (upgrade == "Extend Cart")
             {                                
                 AppendCart();
             }
             else if (upgrade == "Line Capacity")
-            {
-                Debug.Log("more line");
+            {                
+                Line.instance.AddZone();
             }
             else if (upgrade == "Antighost")
             {
