@@ -10,6 +10,7 @@ public class ShopItem : MonoBehaviour
     private AudioSource buySfx;
     private string upgrade;
     private TextMeshProUGUI levelLabel;
+    [SerializeField] private GameObject cartPrefab;
 
     // the number represents the total number of tiles
     private int[] sizeUpgrades = { 8, 12, 16, 25 };
@@ -40,7 +41,7 @@ public class ShopItem : MonoBehaviour
             upgradeLevel++;
             levelLabel.text = "LV " + upgradeLevel;
 
-            if (upgrade == "Bigger Cart")
+            if (upgrade == "Enlarge Cart")
             {
                 // don't make size upgrade go out of bounds
                 if (upgradeLevel >= sizeUpgrades.Length)                    
@@ -48,9 +49,10 @@ public class ShopItem : MonoBehaviour
                 else
                     FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[upgradeLevel]);
             }
-            else if (upgrade == "More Carts")
+            else if (upgrade == "Extend Cart")
             {
-                Debug.Log("more carts");
+                Debug.Log("more carts");                
+                //Instantiate(cartPrefab, )
             }
             else if (upgrade == "Line Capacity")
             {
