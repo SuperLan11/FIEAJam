@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour
 	
 	private static float moveAccel = 0.1f;
 	private static float monsterSpacing = 2f;
+
+	private AudioSource snapSfx;
 	
 	private Vector2 GetMousePosition() => MainCamera.instance.camera.ScreenToWorldPoint(Input.mousePosition);
 	public void StartDrag()
@@ -22,6 +24,8 @@ public class Monster : MonoBehaviour
 		Vector2 mousePos = GetMousePosition();
 		Vector2 delta = mousePos - (Vector2)transform.position;
 		dragDelta = delta;
+
+		snapSfx = GetComponent<AudioSource>();
 	}
 
 	public void EndDrag()
@@ -39,13 +43,16 @@ public class Monster : MonoBehaviour
 			{
 				transform.position = pos;
 				isPlaced = true;
+				
+				if(snapSfx != null)
+					snapSfx.Play();
+
 				AdvanceLine();				
 				return;
 			}
 		}
 
 		transform.position = originalPos;
-
 	}
 
 	private void AdvanceLine()
