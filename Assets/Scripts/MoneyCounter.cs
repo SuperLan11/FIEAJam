@@ -22,7 +22,7 @@ public class MoneyCounter : MonoBehaviour
     void Start()
     {
         moneyCounter = GetComponent<TextMeshProUGUI>();
-        money = 30;
+        money = 150;
     }
 
     // Update is called once per frame

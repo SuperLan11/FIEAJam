@@ -14,6 +14,8 @@ public class Monster : MonoBehaviour
 	private static int idCounter = 0;
 	public int id = 0;
 
+	private SpriteRenderer sprite;
+
 	public void Start()
 	{
 		id = ++idCounter;
@@ -31,6 +33,8 @@ public class Monster : MonoBehaviour
 			}
 			grid.Add(row);
 		}
+
+		sprite = GetComponentInChildren<SpriteRenderer>();
 	}
 	
 	private AudioSource snapSfx;

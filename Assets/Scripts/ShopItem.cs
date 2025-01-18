@@ -5,16 +5,26 @@ using TMPro;
 
 public class ShopItem : MonoBehaviour
 {
-    [SerializeField] private int cost;
-    [SerializeField] private string upgradeText;
+    private int cost;
+    private TextMeshProUGUI costLabel;    
     private AudioSource buySfx;
-    [SerializeField] private string upgrade;    
+    private string upgrade;
+    private TextMeshProUGUI levelLabel;
+    [SerializeField] private GameObject cartPrefab;
+
+    // the number represents the total number of tiles
+    private int[] sizeUpgrades = { 8, 12, 16, 25 };
+    private int upgradeLevel = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         buySfx = GetComponent<AudioSource>();
-        transform.GetComponentInChildren<TextMeshProUGUI>().text = upgradeText + cost;
+        costLabel = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        // excludes $ character
+        cost = int.Parse(costLabel.text.Substring(1));
+        upgrade = transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        levelLabel = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     public void BuyItem()
@@ -23,14 +33,43 @@ public class ShopItem : MonoBehaviour
         {
             MoneyCounter.money -= cost;
             cost += 5;
-            transform.GetComponentInChildren<TextMeshProUGUI>().text = upgradeText + cost;
+            costLabel.text = "$" + cost.ToString();
+
             if(buySfx != null)
                 buySfx.Play();
 
-            if(upgrade == "size")
+            upgradeLevel++;
+            levelLabel.text = "LV " + upgradeLevel;
+
+            if (upgrade == "Enlarge Cart")
             {
-                FindObjectOfType<GridDisplay>().UpgradeSize(6);
+                // don't make size upgrade go out of bounds
+                if (upgradeLevel >= sizeUpgrades.Length)                    
+                    FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[sizeUpgrades.Length-1]);
+                else
+                    FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[upgradeLevel]);
             }
+            else if (upgrade == "Extend Cart")
+            {
+                Debug.Log("more carts");                
+                //Instantiate(cartPrefab, )
+            }
+            else if (upgrade == "Line Capacity")
+            {
+                Debug.Log("more line");
+            }
+            else if (upgrade == "Antighost")
+            {
+                Debug.Log("antighost");
+            }
+            else if (upgrade == "Buy Disney")
+            {
+                Debug.Log("disney");
+            }
+            else if (upgrade == "More Rides")
+            {
+                Debug.Log("more rides");
+            }            
         }
     }
 
