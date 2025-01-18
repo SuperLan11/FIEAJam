@@ -31,11 +31,12 @@ public class MouseHandler : MonoBehaviour
                 foreach (var collider in colliders)
                 {
                     var monster = collider.gameObject.GetComponent<Monster>();
-                    if (monster != null)
+                    if (monster != null && Line.instance.isInBoardingZone(monster))
                     {
                         monster.StartDrag();
                         draggedMonster = monster;
                         dragInProgress = true;
+                        break;
                     }
                 }
             }

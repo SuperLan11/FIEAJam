@@ -178,6 +178,10 @@ public class GridDisplay : MonoBehaviour
                     {
                         for (int j = 0; j < shape[0].Count; j++)
                         {
+                            if (!shape[i][j])
+                            {
+                                continue;
+                            }
                             free[-shape.Count + 1 + i + tileI][j+tileJ] = monster.id;
                         }
                     }

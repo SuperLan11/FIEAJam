@@ -36,15 +36,7 @@ public class Monster : MonoBehaviour
 
 		sprite = GetComponentInChildren<SpriteRenderer>();
 	}
-
-	// variables added to move monsters in line
-	private bool isPlaced = false;
-	public bool isMoving = false;
-	Vector3 movePos = Vector3.zero;
 	
-	private static float moveAccel = 0.1f;
-	private static float monsterSpacing = 0.5f;
-
 	private AudioSource snapSfx;
 	
 	private Vector2 GetMousePosition() => MainCamera.instance.camera.ScreenToWorldPoint(Input.mousePosition);
@@ -74,52 +66,37 @@ public class Monster : MonoBehaviour
 			if (found)
 			{
 				transform.position = pos;
-
-				// only advance line if the selected piece hasn't been placed
-				if (!isPlaced)
-				{
-					isPlaced = true;
-					AdvanceLine();
-				}								       
 				
 				if(snapSfx != null)
 					snapSfx.Play();
-					
+
+				Line.instance.RemoveFromLine(this);		
 				return;
 			}
 		}
 
 		transform.position = originalPos;
 	}
-
-	private void AdvanceLine()
-    {		
-		Monster[] monsters = FindObjectsOfType<Monster>();
-		foreach (Monster monster in monsters)
-		{			
-			bool monsterOnRight = (!monster.isPlaced && monster.transform.position.x > originalPos.x);
-			if (monster.isPlaced || monsterOnRight)			
-				continue;			
-			
-			monster.isMoving = true;
-			monster.movePos = monster.transform.position;
-			monster.movePos.x += (sprite.size.x + monsterSpacing);
-		}
-	}
-
-
+	
 	public void Update()
 	{
 		if (isDragging)
 		{
 			transform.position = GetMousePosition() - dragDelta;
 		}
-        else if (isMoving)
+        else if (movementQueue.Count > 0)
         {            
-            transform.position = Vector3.Lerp(transform.position, movePos, moveAccel);
+            transform.position = Vector3.MoveTowards(transform.position, movementQueue.Peek(), Time.deltaTime*4);
 
-            if (Vector3.Distance(transform.position, movePos) < 0.1f)
-                isMoving = false;
+            if (Vector3.Distance(transform.position, movementQueue.Peek()) < 0.01f)
+	            movementQueue.Dequeue();
         }
     }
+
+	private Queue<Vector3> movementQueue = new();
+
+	public void QueueMovement(Vector3 pos)
+	{
+		movementQueue.Enqueue(pos);
+	}
 }
