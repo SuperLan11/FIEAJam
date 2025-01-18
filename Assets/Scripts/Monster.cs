@@ -70,7 +70,8 @@ public class Monster : MonoBehaviour
 				if(snapSfx != null)
 					snapSfx.Play();
 
-				Line.instance.RemoveFromLine(this);		
+				Line.instance.RemoveFromLine(this);
+				movementQueue.Clear();
 				return;
 			}
 		}
