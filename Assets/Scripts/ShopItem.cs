@@ -8,7 +8,11 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private string upgradeText;
     private AudioSource buySfx;
-    [SerializeField] private string upgrade;    
+    [SerializeField] private string upgrade;
+
+    // the number represents the total number of tiles
+    private int[] sizeUpgrades = { 5, 6, 9, 12 };
+    private static int curSizeIdx = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +33,9 @@ public class ShopItem : MonoBehaviour
 
             if(upgrade == "size")
             {
-                FindObjectOfType<GridDisplay>().UpgradeSize(6);
+                if(curSizeIdx < sizeUpgrades.Length)
+                    curSizeIdx++;
+                FindObjectOfType<GridDisplay>().UpgradeSize(sizeUpgrades[curSizeIdx]);
             }
         }
     }

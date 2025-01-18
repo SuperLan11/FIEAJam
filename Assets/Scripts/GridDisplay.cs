@@ -11,6 +11,8 @@ public class GridDisplay : MonoBehaviour
     //. = empty
     //X = full
 
+    public static int numTiles = 5;
+
     public List<List<bool>> grid = new();
     public List<List<bool>> free = new();
 

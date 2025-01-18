@@ -65,12 +65,17 @@ public class Monster : MonoBehaviour
 			if (found)
 			{
 				transform.position = pos;
-				isPlaced = true;
+
+				// only advance line if the selected piece hasn't been placed
+				if (!isPlaced)
+				{
+					isPlaced = true;
+					AdvanceLine();
+				}				
 				
 				if(snapSfx != null)
 					snapSfx.Play();
-
-				AdvanceLine();				
+					
 				return;
 			}
 		}
@@ -83,8 +88,13 @@ public class Monster : MonoBehaviour
 		Monster[] monsters = FindObjectsOfType<Monster>();
 		foreach (Monster monster in monsters)
 		{
-			if (monster.isPlaced)
+			Debug.Log("originalPos.x: " + originalPos.x);
+			bool monsterOnRight = (!monster.isPlaced && monster.transform.position.x > originalPos.x);
+			if (monster.isPlaced || monsterOnRight)
+			{
+				Debug.Log(monster.name + " should not move");
 				continue;
+			}
 			
 			monster.isMoving = true;
 			monster.movePos = monster.transform.position;
