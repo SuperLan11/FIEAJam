@@ -29,7 +29,7 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
-        cartSprites = FindObjectOfType<GridDisplay>().GetComponentsInChildren<SpriteRenderer>();        
+        cartSprites = GetComponentsInChildren<SpriteRenderer>();
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -62,6 +62,28 @@ public class GridDisplay : MonoBehaviour
         passengers = new();
     }
 
+    public void AppendCart()
+    {
+        if (visibleCarts < cartSprites.Length)
+        {
+            visibleCarts++;
+            cartSprites[visibleCarts].enabled = true;
+        }
+
+        string curShape = shape;
+        string newShape = "";
+
+        for (int i = 0; i < curShape.Length; i++)
+        {
+            // add an extra X just before new line
+            if (curShape[i] == '\n' || i == curShape.Length - 1)
+                newShape += 'X';
+            newShape += curShape[i];
+        }
+        shape = newShape;
+        ResetShape();
+    }
+
     public void UpgradeHeight()
     {
         if (curCartHeight >= 4)
@@ -70,18 +92,21 @@ public class GridDisplay : MonoBehaviour
         string newShape = shape;
         newShape += '\n';
 
-        curCartHeight++;
+        curCartHeight++;        
         foreach (SpriteRenderer cartSprite in cartSprites)
         {
+            // excludes the white square sprites
+            if (!cartSprite.name.Contains("Cart"))
+                continue;
+
             newShape += 'X';
             if (curCartHeight == 3)
             {
-                //cartSprite.sprite = cart3xSprite;
-                cartSprite.sprite = cart4xSprite;
+                cartSprite.sprite = cart3xSprite;
             }
             else if (curCartHeight == 4)
             {                
-                //cartSprite.sprite = cart4xSprite;
+                cartSprite.sprite = cart4xSprite;
             }
             Vector2 newSpritePos = cartSprite.transform.position;
             newSpritePos.y += 0.5f;
@@ -147,7 +172,8 @@ public class GridDisplay : MonoBehaviour
 
         int profit = GetProfit(filled, total);        
         MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
-        StartCoroutine(moneyCnt.MoneyRoll(0.05f, MoneyCounter.money + profit));
+        StartCoroutine(moneyCnt.MoneyRoll(0.03f, MoneyCounter.money + profit));
+        // don't increment money immediately as it is set in MoneyRoll
         //MoneyCounter.money += profit;
         ResetFree();
     }

@@ -27,6 +27,12 @@ public class MoneyCounter : MonoBehaviour
         moneyCounter.text = "$500";
     }
 
+    public static void MakePurchase(int cost)
+    {
+        money -= cost;
+        moneyCounter.text = "$" + money.ToString();
+    }
+
     public IEnumerator MoneyRoll(float timePerNumber, int endMoney)
     {        
         yield return new WaitForSeconds(timePerNumber);
