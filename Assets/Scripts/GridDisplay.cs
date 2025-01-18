@@ -194,20 +194,17 @@ public class GridDisplay : MonoBehaviour
     // hard-coded upgrades for now
     public void UpgradeSize(int numTiles)
     {
-        if(numTiles == 6)
-        {
-            Debug.Log("changed shape");
-            shape = "XXX\nXXX\nXXX";
-        }
-        else if(numTiles == 9)
-        {
-            Debug.Log("changed shape");
+        if(numTiles == 12)
+        {            
             shape = "XXXX\nXXXX\nXXXX";
         }
-        else if(numTiles == 12)
-        {
-            Debug.Log("changed shape");
+        else if(numTiles == 16)
+        {            
             shape = "XXXX\nXXXX\nXXXX\nXXXX";
+        }
+        else if(numTiles == 25)
+        {            
+            shape = "XXXXX\nXXXXX\nXXXXX\nXXXXX";
         }
         grid = new();
         free = new();

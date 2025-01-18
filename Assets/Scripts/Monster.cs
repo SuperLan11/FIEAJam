@@ -80,10 +80,7 @@ public class Monster : MonoBehaviour
 				{
 					isPlaced = true;
 					AdvanceLine();
-				}				
-
-				if(FindObjectsOfType<Monster>().Length == 0)                
-					PlaceMonsters();                
+				}								       
 				
 				if(snapSfx != null)
 					snapSfx.Play();
@@ -94,11 +91,6 @@ public class Monster : MonoBehaviour
 
 		transform.position = originalPos;
 	}
-
-	private void PlaceMonsters()
-    {
-
-    }
 
 	private void AdvanceLine()
     {		
