@@ -15,6 +15,7 @@ public class RedButton : MonoBehaviour
     private void OnMouseDown()
     {        
         buttonSfx.Play();
+        Coaster.isLeaving = true;        
     }
 
     // Update is called once per frame

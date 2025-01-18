@@ -17,7 +17,8 @@ public class ShopItem : MonoBehaviour
     }
 
     public void BuyItem()
-    {        
+    {
+        Debug.Log("button clicked");
         if (MoneyCounter.money >= cost)
         {
             MoneyCounter.SetMoney(MoneyCounter.money - cost);

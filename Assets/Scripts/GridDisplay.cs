@@ -123,6 +123,27 @@ public class GridDisplay : MonoBehaviour
         return new Vector2(0, 0);
     }
 
+    // hard-coded upgrades for now
+    public void UpgradeSize(int numTiles)
+    {
+        if(numTiles == 6)
+        {
+            shape = "XXX\nXXX\nXXX";
+        }
+        else if(numTiles == 9)
+        {
+            shape = "XXXX\nXXXX\nXXXX";
+        }
+        else if(numTiles == 12)
+        {
+            shape = "XXXX\nXXXX\nXXXX\nXXXX";
+        }
+        grid = new();
+        free = new();
+        tiles = new();
+        Start();
+    }
+
     // Update is called once per frame
     void Update()
     {
