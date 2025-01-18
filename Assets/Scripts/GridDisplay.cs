@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class GridDisplay : MonoBehaviour
 {
@@ -14,8 +15,18 @@ public class GridDisplay : MonoBehaviour
     public SpriteRenderer[] cartSprites;
     [SerializeField] private Sprite cart3xSprite;
     [SerializeField] private Sprite cart4xSprite;
+
+    [SerializeField] private SpriteRenderer cartFront;
+    [SerializeField] private Sprite cart3xFront;
+    [SerializeField] private Sprite cart4xFront;
+    
     public int visibleCarts = 4;
     public int curCartHeight = 2;
+    private float endX = 12f;
+    private float returnX = -16f;
+    private float cartAccel = 0.15f;
+    public Vector2 returnPos;
+    private Vector2 startPos;
 
     public List<List<bool>> grid = new();
     //0 = nothing
@@ -28,7 +39,9 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
-        cartSprites = FindObjectOfType<GridDisplay>().GetComponentsInChildren<SpriteRenderer>();
+        cartSprites = GetComponentsInChildren<SpriteRenderer>();
+        startPos = transform.position;
+        returnPos = new Vector2(returnX, transform.position.y);
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -61,6 +74,31 @@ public class GridDisplay : MonoBehaviour
         passengers = new();
     }
 
+    public void AppendCart()
+    {
+        if (visibleCarts < cartSprites.Length)
+        {
+            visibleCarts++;
+            cartSprites[visibleCarts].enabled = true;
+        }
+        Vector2 newFrontPos = cartFront.transform.position;
+        newFrontPos.x += 1f;
+        cartFront.transform.position = newFrontPos;
+
+        string curShape = shape;
+        string newShape = "";
+
+        for (int i = 0; i < curShape.Length; i++)
+        {
+            // add an extra X just before new line
+            if (curShape[i] == '\n' || i == curShape.Length - 1)
+                newShape += 'X';
+            newShape += curShape[i];
+        }
+        shape = newShape;
+        ResetShape();
+    }
+
     public void UpgradeHeight()
     {
         if (curCartHeight >= 4)
@@ -69,26 +107,38 @@ public class GridDisplay : MonoBehaviour
         string newShape = shape;
         newShape += '\n';
 
-        curCartHeight++;
+        curCartHeight++;        
         foreach (SpriteRenderer cartSprite in cartSprites)
         {
+            // excludes the white square sprites
+            if (!cartSprite.name.Contains("Cart"))
+                continue;
+
             newShape += 'X';
             if (curCartHeight == 3)
-            {
+            {                
                 cartSprite.sprite = cart3xSprite;
+                cartFront.sprite = cart3xFront;
             }
             else if (curCartHeight == 4)
-            {
-                if (cart4xSprite != null)
-                    cartSprite.sprite = cart4xSprite;
-            }
+            {                                
+                cartSprite.sprite = cart4xSprite;
+                cartFront.sprite = cart4xFront;
+                GameObject.Find("Enlarge Cart").GetComponent<TextMeshProUGUI>().text = "MAX";
+                GameObject.Find("Enlarge Cart Price").GetComponent<TextMeshProUGUI>().text = "";
+            }            
+
             Vector2 newSpritePos = cartSprite.transform.position;
             newSpritePos.y += 0.5f;
-            cartSprite.transform.position = newSpritePos;
+            cartSprite.transform.position = newSpritePos;            
         }
         Vector2 newGroupPos = transform.position;
         newGroupPos.y -= 0.5f;
         transform.position = newGroupPos;
+
+        Vector2 newFrontPos = cartFront.transform.position;
+        newFrontPos.y += 0.5f;
+        cartFront.transform.position = newFrontPos;
 
         shape = newShape;
         ResetShape();
@@ -110,10 +160,10 @@ public class GridDisplay : MonoBehaviour
         });
     }
 
-    public int GetProfit(int filled, int total, int bodies)
+    public int GetProfit(int filled, int total)
     {
         int profit = 0;
-        for (int i = 0; i < bodies; i++)
+        for (int i = 0; i < filled; i++)
         {
             profit += UnityEngine.Random.Range(6, 9);
         }
@@ -127,9 +177,7 @@ public class GridDisplay : MonoBehaviour
     private List<Monster> passengers;
 
     public void Send()
-    {
-        passengers.ForEach(monster => Destroy(monster.gameObject));
-        passengers.Clear();
+    {        
         int filled = 0;
         int total = 0;
         foreach (var row in free)
@@ -143,9 +191,35 @@ public class GridDisplay : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(MoveCart());
 
-        MoneyCounter.money += GetProfit(filled, total, passengers.Count);
+        int profit = GetProfit(filled, total);        
+        MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
+        StartCoroutine(moneyCnt.MoneyRoll(0.03f, MoneyCounter.money + profit));
+        // don't increment money immediately as it is set in MoneyRoll
+        //MoneyCounter.money += profit;
         ResetFree();
+    }
+
+    private IEnumerator MoveCart()
+    {
+        while (transform.position.x < endX)
+        {
+            yield return new WaitForFixedUpdate();
+            Vector2 endPos = transform.position;
+            endPos.x = endX + 0.1f;
+            transform.position = Vector2.Lerp(transform.position, endPos, cartAccel);
+        }        
+        // teleport then come back
+        transform.position = returnPos;
+        passengers.ForEach(monster => Destroy(monster.gameObject));
+        passengers.Clear();
+
+        while (transform.position.x < startPos.x)
+        {
+            yield return new WaitForFixedUpdate();            
+            transform.position = Vector2.Lerp(transform.position, startPos, cartAccel);
+        }        
     }
 
     private void ClearMonster(Monster monster)

@@ -66,8 +66,9 @@ public class Monster : MonoBehaviour
 			if (found)
 			{
 				transform.position = pos;
+				transform.SetParent(FindObjectOfType<GridDisplay>().transform);
 				
-				if(snapSfx != null)
+				if (snapSfx != null)
 					snapSfx.Play();
 
 				Line.instance.RemoveFromLine(this);
