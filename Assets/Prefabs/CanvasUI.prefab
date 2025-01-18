@@ -2912,6 +2912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46615f2b27a8034d97c66b23a1aca38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cart: {fileID: 0}
 --- !u!82 &3500899861369346168
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3123,10 +3124,10 @@ RectTransform:
   - {fileID: 1076152066635474370}
   m_Father: {fileID: 3310417111941896657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334, y: 83.47}
-  m_SizeDelta: {x: 326.8609, y: 453.0599}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 178, y: -227}
+  m_SizeDelta: {x: 326.8609, y: 453.05994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1087882226119182066
 Animator:
