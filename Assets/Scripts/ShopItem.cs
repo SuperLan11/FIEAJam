@@ -14,7 +14,7 @@ public class ShopItem : MonoBehaviour
         buySfx = GetComponent<AudioSource>();
     }
 
-    private void BuyItem()
+    public void BuyItem()
     {
         Debug.Log("mouse down");
         if (MoneyCounter.money >= cost)
