@@ -22,6 +22,11 @@ public class GridDisplay : MonoBehaviour
     
     public int visibleCarts = 4;
     public int curCartHeight = 2;
+    private float endX = 12f;
+    private float returnX = -16f;
+    private float cartAccel = 0.15f;
+    public Vector2 returnPos;
+    private Vector2 startPos;
 
     public List<List<bool>> grid = new();
     //0 = nothing
@@ -35,6 +40,8 @@ public class GridDisplay : MonoBehaviour
     void Start()
     {
         cartSprites = GetComponentsInChildren<SpriteRenderer>();
+        startPos = transform.position;
+        returnPos = new Vector2(returnX, transform.position.y);
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -186,6 +193,7 @@ public class GridDisplay : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(MoveCart());
 
         int profit = GetProfit(filled, total);        
         MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
@@ -193,6 +201,25 @@ public class GridDisplay : MonoBehaviour
         // don't increment money immediately as it is set in MoneyRoll
         //MoneyCounter.money += profit;
         ResetFree();
+    }
+
+    private IEnumerator MoveCart()
+    {
+        while (transform.position.x < endX)
+        {
+            yield return new WaitForFixedUpdate();
+            Vector2 endPos = transform.position;
+            endPos.x = endX + 0.1f;
+            transform.position = Vector2.Lerp(transform.position, endPos, cartAccel);
+        }
+        // teleport then come back
+        transform.position = returnPos;
+
+        while (transform.position.x < startPos.x)
+        {
+            yield return new WaitForFixedUpdate();            
+            transform.position = Vector2.Lerp(transform.position, startPos, cartAccel);
+        }        
     }
 
     private void ClearMonster(Monster monster)
