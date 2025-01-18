@@ -76,4 +76,15 @@ public class Line : MonoBehaviour
             Spawn(monster);
         }
     }
+
+    public bool isInBoardingZone(Monster monster)
+    {
+        int index = queue.IndexOf(monster);
+        if (index == -1)
+        {
+            return false;
+        }
+
+        return index < zones;
+    }
 }
