@@ -47,13 +47,14 @@ public class Monster : MonoBehaviour
 		Vector2 mousePos = GetMousePosition();
 		Vector2 delta = mousePos - (Vector2)transform.position;
 		dragDelta = delta;
-
+		GetComponentInChildren<SpriteRenderer>().sortingLayerName = "monsterDragging";
 		snapSfx = GetComponent<AudioSource>();
 	}
 
 	public void EndDrag()
 	{
 		isDragging = false;
+		GetComponentInChildren<SpriteRenderer>().sortingLayerName = "monster";
 		foreach (GridDisplay display in FindObjectsOfType<GridDisplay>())
 		{
 			if (!display.isTargetable)
