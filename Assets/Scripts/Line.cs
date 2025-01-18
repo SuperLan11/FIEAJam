@@ -75,6 +75,11 @@ public class Line : MonoBehaviour
             GameObject monster = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
             Spawn(monster);
         }
+
+        for (int i = 0; i < Math.Min(queue.Count, zones); i++)
+        {
+            queue[i].UnGray();
+        }
     }
 
     public bool isInBoardingZone(Monster monster)
