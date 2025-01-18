@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 966447249
+    locked: 0
+  - name: cartUI
+    uniqueID: 3242730801
+    locked: 0
+  - name: monster
+    uniqueID: 3571906801
+    locked: 0
