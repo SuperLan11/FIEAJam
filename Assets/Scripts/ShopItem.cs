@@ -10,9 +10,7 @@ public class ShopItem : MonoBehaviour
     private AudioSource buySfx;
     private string upgrade;
     private TextMeshProUGUI levelLabel;    
-
-    // the number represents the total number of tiles
-    private int[] sizeUpgrades = { 8, 12, 16, 25 };
+        
     private int upgradeLevel = 0;
 
     // Start is called before the first frame update
@@ -31,9 +29,9 @@ public class ShopItem : MonoBehaviour
         GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
 
         if (cartGroup.visibleCarts < cartGroup.cartSprites.Length)
-        {
-            cartGroup.cartSprites[cartGroup.visibleCarts].enabled = true;
+        {            
             cartGroup.visibleCarts++;
+            cartGroup.cartSprites[cartGroup.visibleCarts].enabled = true;
         }
 
         string curShape = cartGroup.shape;
@@ -67,13 +65,7 @@ public class ShopItem : MonoBehaviour
             GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
 
             if (upgrade == "Enlarge Cart")
-            {
-                // don't make size upgrade go out of bounds
-                /*if (upgradeLevel >= sizeUpgrades.Length)                    
-                    cartGroup.UpgradeSize(sizeUpgrades[sizeUpgrades.Length-1]);
-                else
-                    cartGroup.UpgradeSize(sizeUpgrades[upgradeLevel]);*/
-
+            {               
                 cartGroup.UpgradeHeight();                
             }
             else if (upgrade == "Extend Cart")

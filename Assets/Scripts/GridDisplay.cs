@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class GridDisplay : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
-        cartSprites = FindObjectOfType<GridDisplay>().GetComponentsInChildren<SpriteRenderer>();
+        cartSprites = FindObjectOfType<GridDisplay>().GetComponentsInChildren<SpriteRenderer>();        
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -75,12 +76,12 @@ public class GridDisplay : MonoBehaviour
             newShape += 'X';
             if (curCartHeight == 3)
             {
-                cartSprite.sprite = cart3xSprite;
+                //cartSprite.sprite = cart3xSprite;
+                cartSprite.sprite = cart4xSprite;
             }
             else if (curCartHeight == 4)
-            {
-                if (cart4xSprite != null)
-                    cartSprite.sprite = cart4xSprite;
+            {                
+                //cartSprite.sprite = cart4xSprite;
             }
             Vector2 newSpritePos = cartSprite.transform.position;
             newSpritePos.y += 0.5f;
@@ -144,7 +145,10 @@ public class GridDisplay : MonoBehaviour
             }
         }
 
-        MoneyCounter.money += GetProfit(filled, total);
+        int profit = GetProfit(filled, total);        
+        MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
+        StartCoroutine(moneyCnt.MoneyRoll(0.05f, MoneyCounter.money + profit));
+        //MoneyCounter.money += profit;
         ResetFree();
     }
 

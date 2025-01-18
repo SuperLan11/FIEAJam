@@ -284,8 +284,16 @@ PrefabInstance:
       value: CanvasUI
       objectReference: {fileID: 0}
     - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145209451044925279, guid: c1b264d77501e7c428af859954cb96e8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 677
+      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -511,6 +519,10 @@ PrefabInstance:
       propertyPath: cart3xSprite
       value: 
       objectReference: {fileID: 21300000, guid: 25e509dd70abfb347a26c14a4c13b0a3, type: 3}
+    - target: {fileID: 8431299438914396337, guid: 8292b9193d94a9e4d9e811837d9f7382, type: 3}
+      propertyPath: cart4xSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7880ecdea6c58574eb7e2caa28194329, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
