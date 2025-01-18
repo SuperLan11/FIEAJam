@@ -16,7 +16,7 @@ public class MouseHandler : MonoBehaviour
         if (dragInProgress)
         {
             if (Input.GetMouseButtonUp(0))
-            {
+            {                
                 draggedMonster.EndDrag();
                 dragInProgress = false;
             }
@@ -25,7 +25,7 @@ public class MouseHandler : MonoBehaviour
         {
             
             if (Input.GetMouseButtonDown(0))
-            {
+            {                
                 Vector2 pos = MainCamera.instance.camera.ScreenToWorldPoint(Input.mousePosition);
                 var colliders = Physics2D.OverlapPointAll(pos);
                 foreach (var collider in colliders)

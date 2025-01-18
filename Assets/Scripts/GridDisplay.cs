@@ -108,7 +108,7 @@ public class GridDisplay : MonoBehaviour
                 {
                     for (int i = 0; i < shape.Count; i++)
                     {
-                        for (int j = 0; j < shape.Count; j++)
+                        for (int j = 0; j < shape[0].Count; j++)
                         {
                             free[-shape.Count + 1 + i + tileI][j+tileJ] = false;
                         }

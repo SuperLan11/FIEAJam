@@ -5,18 +5,20 @@ using TMPro;
 
 public class MoneyCounter : MonoBehaviour
 {
-    [System.NonSerialized] public int money = 0;
+    [System.NonSerialized] public static int money = 0;
+    private static TextMeshProUGUI moneyCounter;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetMoney(5);
+        moneyCounter = FindObjectOfType<MoneyCounter>().GetComponent<TextMeshProUGUI>();
+        SetMoney(30);
     }
 
-    public void SetMoney(int newMoney)
+    public static void SetMoney(int newMoney)
     {
         money = newMoney;
-        GetComponent<TextMeshProUGUI>().text = "Money: " + newMoney.ToString();
+        moneyCounter.text = "Money: " + newMoney.ToString();
     }
 
     // Update is called once per frame
