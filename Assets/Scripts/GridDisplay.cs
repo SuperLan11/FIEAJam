@@ -232,7 +232,10 @@ public class GridDisplay : MonoBehaviour
         int profit = GetProfit(filled, total, passengers.Count);
         MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();
         MoneyCounter.profit += profit;
-        StartCoroutine(moneyCnt.MoneyRoll(0.03f, MoneyCounter.money + profit));
+        int startMoney = MoneyCounter.money;
+        MoneyCounter.money += profit;
+        int endMoney = MoneyCounter.money;
+        StartCoroutine(moneyCnt.MoneyRoll(0.03f, startMoney, endMoney));
         // don't increment money immediately as it is set in MoneyRoll
         //MoneyCounter.money += profit;
         ResetFree();
