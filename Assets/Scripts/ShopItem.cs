@@ -41,7 +41,11 @@ public class ShopItem : MonoBehaviour
             colors.pressedColor = Color.grey;
 
             MoneyCounter.MakePurchase(cost);
-            cost += (int)(cost * 0.33f);
+            if (upgrade == "Surprise Box") {
+                
+            } else {
+                cost += (int)(cost * 0.33f);
+            } 
             costLabel.text = "$" + cost.ToString();
 
             if(buySfx != null)

@@ -2854,7 +2854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gambling Mode
+  m_text: Surprise Mode
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 570374a19a728f649a3e522526f9da11, type: 2}
   m_sharedMaterial: {fileID: -3364601005358923997, guid: 570374a19a728f649a3e522526f9da11, type: 2}
