@@ -86,8 +86,71 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6009629962753272845, guid: 7f8a528ea73b1d2b4ac2434b182848a2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2206495360988385684, guid: 7f8a528ea73b1d2b4ac2434b182848a2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8873359991787097288}
   m_SourcePrefab: {fileID: 100100000, guid: 7f8a528ea73b1d2b4ac2434b182848a2, type: 3}
+--- !u!1 &849496360854957981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2206495360988385684, guid: 7f8a528ea73b1d2b4ac2434b182848a2, type: 3}
+  m_PrefabInstance: {fileID: 1537152059445198345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &8873359991787097288
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849496360854957981}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5, y: -0.5}
+      - {x: -0.5, y: 0.5}
+      - {x: 0.5, y: 0.5}
+      - {x: 0.5, y: 1.5}
+      - {x: 2.5, y: 1.5}
+      - {x: 2.5, y: 0.5}
+      - {x: 1.5, y: 0.5}
+      - {x: 1.5, y: -0.5}
+      - {x: -0.5, y: -0.5}
+  m_UseDelaunayMesh: 0
