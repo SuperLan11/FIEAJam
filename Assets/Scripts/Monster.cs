@@ -122,7 +122,7 @@ public class Monster : MonoBehaviour
 				Vector2 mousePos = GetMousePosition();
 				transform.RotateAround(mousePos, Vector3.back, 90);
 				dragDelta = mousePos - (Vector2)transform.position;
-				MainCamera.instance.TurnNoise.Play();
+				if (MainCamera.instance.TurnNoise != null) MainCamera.instance.TurnNoise.Play();
 				rotate90();
 
 			} else if (Input.GetKeyDown(KeyCode.Q) || (Input.GetAxis("Mouse ScrollWheel") < 0f))
@@ -130,7 +130,7 @@ public class Monster : MonoBehaviour
 				Vector2 mousePos = GetMousePosition();
 				transform.RotateAround(mousePos, Vector3.back, -90);
 				dragDelta = mousePos - (Vector2)transform.position;
-				MainCamera.instance.TurnNoise.Play();
+				if (MainCamera.instance.TurnNoise != null) MainCamera.instance.TurnNoise.Play();
 				rotate90();
 				rotate90();
 				rotate90();
@@ -145,7 +145,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-	private Queue<Vector3> movementQueue = new();
+	public Queue<Vector3> movementQueue = new();
 
 	public void QueueMovement(Vector3 pos)
 	{

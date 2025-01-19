@@ -69,7 +69,7 @@ public class Line : MonoBehaviour
     }
 
 
-    private void Spawn(GameObject monsterPrefab)
+    private GameObject Spawn(GameObject monsterPrefab)
     {
         GameObject lastWaypoint = waypoints[^1];
         GameObject monster = Instantiate(monsterPrefab, lastWaypoint.transform.position, Quaternion.identity);
@@ -78,10 +78,21 @@ public class Line : MonoBehaviour
             monster.GetComponent<Monster>().QueueMovement(waypoints[i].transform.position);
         }
         queue.Add(monster.GetComponent<Monster>());
+        return monster;
     }
 
     private void FixedUpdate()
     {
+        if (queue.Count == 0)
+        {
+            for (int i = 0; i < zones; i++)
+            {
+                GameObject monster = unlockedMonsters[Random.Range(0, unlockedMonsters.Count)];
+                var obj = Spawn(monster);
+                obj.transform.position = waypoints[i].transform.position;
+                obj.GetComponent<Monster>().movementQueue.Clear();
+            }
+        }
         if (Random.Range(1, 40) == 1 && queue.Count < waypoints.Count)
         {
             GameObject monster = unlockedMonsters[Random.Range(0, unlockedMonsters.Count)];
