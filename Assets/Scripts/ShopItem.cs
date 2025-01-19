@@ -69,18 +69,14 @@ public class ShopItem : MonoBehaviour
             {                
                 Line.instance.AddZone();
             }
-            else if (upgrade == "Antighost")
+            else if (upgrade == "Surprise Box")
             {
-                Debug.Log("antighost");
+                Debug.Log("Loot Box");
             }
             else if (upgrade == "Buy Disney")
             {
                 Debug.Log("disney");
-            }
-            else if (upgrade == "More Rides")
-            {
-                Debug.Log("more rides");
-            }            
+            }       
         }        
     }
 

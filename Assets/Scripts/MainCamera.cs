@@ -9,4 +9,6 @@ public class MainCamera : MonoBehaviour
     {
         instance = this;
     }
+
+    public AudioSource TurnNoise;
 }
