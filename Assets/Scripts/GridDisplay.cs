@@ -106,7 +106,7 @@ public class GridDisplay : MonoBehaviour
         shape = newShape;
         ResetShape();
 
-        FixAlignment();
+        //FixAlignment();
     }
 
     public void UpgradeHeight()
@@ -145,8 +145,8 @@ public class GridDisplay : MonoBehaviour
 
         shape = newShape;
         ResetShape();
-
-        //LowerSquares();
+        
+        FixAlignment();
     }
 
     private void FixAlignment()
@@ -155,7 +155,7 @@ public class GridDisplay : MonoBehaviour
         List<SpriteRenderer> sprites = FindObjectsOfType<SpriteRenderer>().ToList();
         foreach (SpriteRenderer sprite in sprites)
         {
-            if (sprite.name.Contains("Square") || sprite.name.Contains("front"))
+            if (sprite.name.Contains("Cart") || sprite.name.Contains("front"))
             {
                 if (curCartHeight == 3)
                 {
@@ -169,7 +169,7 @@ public class GridDisplay : MonoBehaviour
                     Vector2 newSpritePos = sprite.transform.position;
                     newSpritePos.y += 0.5f;
                     sprite.transform.position = newSpritePos;
-                    transform.position += Vector3.down * 0.7f;
+                    transform.position += Vector3.down * 1.1f;
                 }
             }
         }
