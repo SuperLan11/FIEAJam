@@ -122,12 +122,15 @@ public class Monster : MonoBehaviour
 				Vector2 mousePos = GetMousePosition();
 				transform.RotateAround(mousePos, Vector3.back, 90);
 				dragDelta = mousePos - (Vector2)transform.position;
+				MainCamera.instance.TurnNoise.Play();
 				rotate90();
+
 			} else if (Input.GetKeyDown(KeyCode.Q) || (Input.GetAxis("Mouse ScrollWheel") < 0f))
 			{
 				Vector2 mousePos = GetMousePosition();
 				transform.RotateAround(mousePos, Vector3.back, -90);
 				dragDelta = mousePos - (Vector2)transform.position;
+				MainCamera.instance.TurnNoise.Play();
 				rotate90();
 				rotate90();
 				rotate90();
