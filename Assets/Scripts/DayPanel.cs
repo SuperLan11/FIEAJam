@@ -70,7 +70,7 @@ public class DayPanel : MonoBehaviour
         yield return new WaitForSeconds(rollTime / profit);
         moneyDisplay++;
         earningsLabel.text = "You earned $" + moneyDisplay.ToString();
-        int newMoney = int.Parse(earningsLabel.text.Substring(12)) + 1;        
+        int newMoney = int.Parse(earningsLabel.text.Substring(12));
         if(newMoney < profit)
             StartCoroutine(RollMoneyResult(rollTime, profit));
     }
