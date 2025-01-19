@@ -6,11 +6,16 @@ using TMPro;
 public class ShopLabel : MonoBehaviour
 {
     private TextMeshProUGUI shopLabel;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         shopLabel = GetComponentInChildren<TextMeshProUGUI>();
+        anim = GetComponentInParent<Animator>();
+        anim.SetTrigger("tabPressClose");
+        // could set the text initially to Close Shop, but this is slightly less confusing since tablet starts off screen
+        SwapShopLabel();
     }
 
     public void SwapShopLabel()
