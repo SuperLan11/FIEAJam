@@ -397,10 +397,15 @@ MonoBehaviour:
   cartSprites: []
   cart3xSprite: {fileID: 0}
   cart4xSprite: {fileID: 0}
+  cartFront: {fileID: 0}
+  cart3xFront: {fileID: 0}
+  cart4xFront: {fileID: 0}
   visibleCarts: 3
   curCartHeight: 2
+  returnPos: {x: 0, y: 0}
   tilePrefab: {fileID: 1474303913138067303, guid: c1df9c485b976056786679af81508cdb, type: 3}
   isTargetable: 1
+  canSend: 1
 --- !u!1 &2643231366276721075
 GameObject:
   m_ObjectHideFlags: 0

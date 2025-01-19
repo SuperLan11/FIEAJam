@@ -210,7 +210,6 @@ public class GridDisplay : MonoBehaviour
         // don't increment money immediately as it is set in MoneyRoll
         //MoneyCounter.money += profit;
         ResetFree();
-        canSend = true;
     }
 
     private IEnumerator MoveCart(ThreadStart upgradeCallback)
@@ -229,11 +228,12 @@ public class GridDisplay : MonoBehaviour
         upgradeCallback.Invoke();
         // teleport then come back
         
-        while (transform.position.x < startPos.x)
+        while (Mathf.Abs(transform.position.x - startPos.x) > 0.08f)
         {
             yield return new WaitForFixedUpdate();            
             transform.position = Vector2.Lerp(transform.position, startPos, cartAccel);
-        }        
+        }
+        canSend = true;
     }
 
     private void ClearMonster(Monster monster)
