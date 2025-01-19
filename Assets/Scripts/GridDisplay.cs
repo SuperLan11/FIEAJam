@@ -106,7 +106,7 @@ public class GridDisplay : MonoBehaviour
         shape = newShape;
         ResetShape();
 
-        LowerSquares();
+        //LowerSquares();
     }
 
     public void UpgradeHeight()
@@ -146,16 +146,16 @@ public class GridDisplay : MonoBehaviour
         shape = newShape;
         ResetShape();
 
-        LowerSquares();
+        FixAlignment();
     }
 
-    private void LowerSquares()
+    private void FixAlignment()
     {
         // do this after reset shape so position changes aren't overriden
         List<SpriteRenderer> sprites = FindObjectsOfType<SpriteRenderer>().ToList();
         foreach (SpriteRenderer sprite in sprites)
         {
-            if (sprite.name.Contains("Square"))
+            if (sprite.name.Contains("Cart"))
             {
                 if (curCartHeight == 3)
                 {
