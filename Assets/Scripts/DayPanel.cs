@@ -59,7 +59,6 @@ public class DayPanel : MonoBehaviour
             endDayPanel.GetComponent<Image>().enabled = false;
             dayLabel.alpha = 0f;            
             earningsLabel.alpha = 0f;
-            FindObjectOfType<Clock>().RestartTimer();
             GameObject.Find("shiftClock").GetComponent<Clock>().enabled = true;            
             dayNum++;
             //GameObject.Find("MoneyCounter").GetComponent<TextMeshProUGUI>().text = "$" + MoneyCounter.money;
