@@ -82,7 +82,7 @@ public class DayPanel : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         int money = MoneyCounter.money;
-        if (dayNum == 3 && PlayerPrefs.GetInt("endless") == 0)
+        if (dayNum == 4 && PlayerPrefs.GetInt("endless") == 0)
         {
             SceneManager.LoadScene("WinScreen");
         }
