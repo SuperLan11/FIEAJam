@@ -41,7 +41,7 @@ public class ShopItem : MonoBehaviour
             colors.pressedColor = Color.grey;
 
             MoneyCounter.MakePurchase(cost);
-            cost += 5;
+            cost += (int)(cost * 0.33f);
             costLabel.text = "$" + cost.ToString();
 
             if(buySfx != null)

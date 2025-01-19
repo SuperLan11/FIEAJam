@@ -189,10 +189,10 @@ public class GridDisplay : MonoBehaviour
         });
     }
 
-    public int GetProfit(int filled, int total)
+    public int GetProfit(int filled, int total, int bodies)
     {
         int profit = 0;
-        for (int i = 0; i < filled; i++)
+        for (int i = 0; i < bodies; i++)
         {
             profit += UnityEngine.Random.Range(6, 9);
         }
@@ -229,7 +229,7 @@ public class GridDisplay : MonoBehaviour
         }
         StartCoroutine(MoveCart(upgradeCallback));
 
-        int profit = GetProfit(filled, total);        
+        int profit = GetProfit(filled, total, passengers.Count);        
         MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
         StartCoroutine(moneyCnt.MoneyRoll(0.03f, MoneyCounter.money + profit));
         // don't increment money immediately as it is set in MoneyRoll
