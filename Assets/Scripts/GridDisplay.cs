@@ -13,14 +13,14 @@ public class GridDisplay : MonoBehaviour
     //. = empty
     //X = full
 
-    public List<SpriteRenderer> cartSprites = new List<SpriteRenderer>();    
+    public List<SpriteRenderer> cartSprites = new List<SpriteRenderer>();
     [SerializeField] private Sprite cart3xSprite;
     [SerializeField] private Sprite cart4xSprite;
 
     [SerializeField] private SpriteRenderer cartFront;
     [SerializeField] private Sprite cart3xFront;
     [SerializeField] private Sprite cart4xFront;
-    
+
     public int visibleCarts = 4;
     public int curCartHeight = 2;
     private float endX = 12f;
@@ -40,8 +40,8 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
-        if (startPos == Vector2.zero)startPos = transform.position;
-        if (returnPos == Vector2.zero) returnPos = new Vector2(returnX, transform.position.y);        
+        if (startPos == Vector2.zero) startPos = transform.position;
+        if (returnPos == Vector2.zero) returnPos = new Vector2(returnX, transform.position.y);
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -69,7 +69,7 @@ public class GridDisplay : MonoBehaviour
             }
             grid.Add(row);
         }
-        
+
         ResetFree();
         passengers = new();
 
@@ -78,8 +78,8 @@ public class GridDisplay : MonoBehaviour
         {
             // excludes the white square sprites
             if (rawSprites[i].name.Contains("Cart"))
-                cartSprites.Add(rawSprites[i]);            
-        }        
+                cartSprites.Add(rawSprites[i]);
+        }
     }
 
     public void AppendCart()
@@ -87,7 +87,7 @@ public class GridDisplay : MonoBehaviour
         if (visibleCarts < cartSprites.Count)
         {
             cartSprites[visibleCarts].enabled = true;
-            visibleCarts++;            
+            visibleCarts++;
         }
         Vector2 newFrontPos = cartFront.transform.position;
         newFrontPos.x += 1f;
@@ -119,21 +119,21 @@ public class GridDisplay : MonoBehaviour
 
         curCartHeight++;
         for (int i = 0; i < cartSprites.Count; i++)
-        {            
+        {
             newShape += 'X';
             if (curCartHeight == 3)
-            {                
+            {
                 cartSprites[i].sprite = cart3xSprite;
                 cartFront.sprite = cart3xFront;
             }
             else if (curCartHeight == 4)
-            {                                
+            {
                 cartSprites[i].sprite = cart4xSprite;
                 cartFront.sprite = cart4xFront;
                 GameObject.Find("Enlarge Cart").GetComponent<TextMeshProUGUI>().text = "MAX";
                 GameObject.Find("Enlarge Cart Price").GetComponent<TextMeshProUGUI>().text = "";
-            }           
-        }        
+            }
+        }
         //Debug.Log("squareCount: " + squareCount);
         /*Vector2 newGroupPos = transform.position;
         newGroupPos.y -= 5f;
@@ -145,6 +145,7 @@ public class GridDisplay : MonoBehaviour
 
         shape = newShape;
         ResetShape();
+
         LowerSquares();
     }
 
@@ -198,7 +199,7 @@ public class GridDisplay : MonoBehaviour
         if (filled == total)
         {
             profit += 10;
-            
+
         }
         return profit;
     }
@@ -228,8 +229,8 @@ public class GridDisplay : MonoBehaviour
         }
         StartCoroutine(MoveCart(upgradeCallback));
 
-        int profit = GetProfit(filled, total, passengers.Count);        
-        MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
+        int profit = GetProfit(filled, total, passengers.Count);
+        MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();
         StartCoroutine(moneyCnt.MoneyRoll(0.03f, MoneyCounter.money + profit));
         // don't increment money immediately as it is set in MoneyRoll
         //MoneyCounter.money += profit;
@@ -251,10 +252,10 @@ public class GridDisplay : MonoBehaviour
 
         upgradeCallback.Invoke();
         // teleport then come back
-        
+
         while (Mathf.Abs(transform.position.x - startPos.x) > 0.08f)
         {
-            yield return new WaitForFixedUpdate();            
+            yield return new WaitForFixedUpdate();
             transform.position = Vector2.Lerp(transform.position, startPos, cartAccel);
         }
         canSend = true;
@@ -273,7 +274,7 @@ public class GridDisplay : MonoBehaviour
             }
         }
     }
-    
+
     //given the bottom-right corner of a monster, get the place where
     //it would snap to on the grid, or return null if it's
     //out of bounds or unable to be placed
@@ -285,7 +286,7 @@ public class GridDisplay : MonoBehaviour
         foreach (var record in tiles)
         {
             var tile = record.Value;
-            if (tile ==null)
+            if (tile == null)
             {
                 continue;
             }
@@ -295,7 +296,7 @@ public class GridDisplay : MonoBehaviour
                 (int, int) pos = record.Key;
                 int tileI = pos.Item1;
                 int tileJ = pos.Item2;
-                
+
                 found = true;
                 for (int i = 0; i < shape.Count; i++)
                 {
@@ -342,11 +343,11 @@ public class GridDisplay : MonoBehaviour
                             {
                                 continue;
                             }
-                            free[-shape.Count + 1 + i + tileI][j+tileJ] = monster.id;
+                            free[-shape.Count + 1 + i + tileI][j + tileJ] = monster.id;
                         }
                     }
                 }
-                
+
                 return tilePos;
             }
         }
@@ -358,16 +359,16 @@ public class GridDisplay : MonoBehaviour
     // hard-coded upgrades for now
     public void UpgradeSize(int numTiles)
     {
-        if(numTiles == 12)
-        {            
+        if (numTiles == 12)
+        {
             shape = "XXXX\nXXXX\nXXXX";
         }
-        else if(numTiles == 16)
-        {            
+        else if (numTiles == 16)
+        {
             shape = "XXXX\nXXXX\nXXXX\nXXXX";
         }
-        else if(numTiles == 25)
-        {            
+        else if (numTiles == 25)
+        {
             shape = "XXXXX\nXXXXX\nXXXXX\nXXXXX";
         }
         ResetShape();
@@ -388,6 +389,6 @@ public class GridDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

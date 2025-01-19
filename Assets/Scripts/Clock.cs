@@ -38,8 +38,8 @@ public class Clock : MonoBehaviour
             nextUpdateTime += updateInterval;
         }
 
-        if (elapsedTime >= totalTime) {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (elapsedTime >= totalTime) 
+        {            
             FindObjectOfType<DayPanel>().EndDay();
             enabled = false;
         }
