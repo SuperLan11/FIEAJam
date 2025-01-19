@@ -46,11 +46,17 @@ public class ShopItem : MonoBehaviour
 
             if (upgrade == "Enlarge Cart")
             {               
-                cartGroup.UpgradeHeight();                
+                cartGroup.Send(()=>
+                {
+                    cartGroup.UpgradeHeight();
+                });                
             }
             else if (upgrade == "Extend Cart")
             {
-                cartGroup.AppendCart();                
+                cartGroup.Send(()=>
+                {
+                    cartGroup.AppendCart();
+                });
             }
             else if (upgrade == "Line Capacity")
             {                

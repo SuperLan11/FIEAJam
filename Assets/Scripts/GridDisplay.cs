@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using TMPro;
 
@@ -25,8 +26,8 @@ public class GridDisplay : MonoBehaviour
     private float endX = 12f;
     private float returnX = -16f;
     private float cartAccel = 0.15f;
-    public Vector2 returnPos;
-    private Vector2 startPos;
+    public Vector2 returnPos = Vector2.zero;
+    private Vector2 startPos = Vector2.zero;
 
     public List<List<bool>> grid = new();
     //0 = nothing
@@ -40,8 +41,8 @@ public class GridDisplay : MonoBehaviour
     void Start()
     {
         cartSprites = GetComponentsInChildren<SpriteRenderer>();
-        startPos = transform.position;
-        returnPos = new Vector2(returnX, transform.position.y);
+        if (startPos == Vector2.zero)startPos = transform.position;
+        if (returnPos == Vector2.zero) returnPos = new Vector2(returnX, transform.position.y);
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -175,9 +176,11 @@ public class GridDisplay : MonoBehaviour
     }
 
     private List<Monster> passengers;
+    public bool canSend = false;
 
-    public void Send()
-    {        
+    public void Send(ThreadStart upgradeCallback)
+    {
+        canSend = false;
         int filled = 0;
         int total = 0;
         foreach (var row in free)
@@ -191,7 +194,7 @@ public class GridDisplay : MonoBehaviour
                 }
             }
         }
-        StartCoroutine(MoveCart());
+        StartCoroutine(MoveCart(upgradeCallback));
 
         int profit = GetProfit(filled, total);        
         MoneyCounter moneyCnt = FindObjectOfType<MoneyCounter>();        
@@ -199,9 +202,10 @@ public class GridDisplay : MonoBehaviour
         // don't increment money immediately as it is set in MoneyRoll
         //MoneyCounter.money += profit;
         ResetFree();
+        canSend = true;
     }
 
-    private IEnumerator MoveCart()
+    private IEnumerator MoveCart(ThreadStart upgradeCallback)
     {
         while (transform.position.x < endX)
         {
@@ -209,12 +213,14 @@ public class GridDisplay : MonoBehaviour
             Vector2 endPos = transform.position;
             endPos.x = endX + 0.1f;
             transform.position = Vector2.Lerp(transform.position, endPos, cartAccel);
-        }        
-        // teleport then come back
+        }
         transform.position = returnPos;
         passengers.ForEach(monster => Destroy(monster.gameObject));
         passengers.Clear();
 
+        upgradeCallback.Invoke();
+        // teleport then come back
+        
         while (transform.position.x < startPos.x)
         {
             yield return new WaitForFixedUpdate();            
