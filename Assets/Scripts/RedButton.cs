@@ -14,10 +14,14 @@ public class RedButton : MonoBehaviour
     }
 
     public void Click()
-    {        
+    {
+        if (!cart.canSend)
+        {
+            return;
+        }
         buttonSfx.Play();
         Coaster.isLeaving = true;
-        cart.Send();
+        cart.Send(() => { });
     }
 
     // Update is called once per frame
