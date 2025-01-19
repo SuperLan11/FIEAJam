@@ -93,7 +93,7 @@ public class Monster : MonoBehaviour
             if (Vector3.Distance(transform.position, movementQueue.Peek()) < 0.01f)
 	            movementQueue.Dequeue();
 
-            if (Input.GetKeyDown("E"))
+            if (Input.GetKeyDown(KeyCode.E))
             {
 	            
             }
