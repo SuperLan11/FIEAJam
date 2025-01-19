@@ -12,6 +12,7 @@ public class DayPanel : MonoBehaviour
     private GameObject endDayPanel;
 
     public static int dayNum = 1;
+    private int moneyDisplay = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,26 @@ public class DayPanel : MonoBehaviour
         dayLabel.alpha = 1f;
         dayLabel.text = "Day " + dayNum + " is over";
         earningsLabel.alpha = 1f;
-        earningsLabel.text = "You earned $" + (MoneyCounter.money - MoneyCounter.dayStartMoney);
+        int profit = (MoneyCounter.money - MoneyCounter.dayStartMoney);
+        //earningsLabel.text = "You earned $" + profit;
+        StartCoroutine(RollMoneyResult(2, profit));
         StartCoroutine(WaitToLoad());
+    }
+
+    public IEnumerator RollMoneyResult(float rollTime, int profit)
+    {
+        // the more money you get, the faster the numbers go up
+        yield return new WaitForSeconds(rollTime / profit);
+        moneyDisplay++;
+        earningsLabel.text = "You earned $" + moneyDisplay.ToString();
+        int newMoney = int.Parse(earningsLabel.text.Substring(12)) + 1;        
+        if(newMoney < profit)
+            StartCoroutine(RollMoneyResult(rollTime, profit));
     }
 
     private IEnumerator WaitToLoad()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         int money = MoneyCounter.money;
         if (dayNum == 3)
         {
@@ -41,11 +55,25 @@ public class DayPanel : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            CleanScene();
+            endDayPanel.GetComponent<Image>().enabled = false;
+            dayLabel.alpha = 0f;            
+            earningsLabel.alpha = 0f;
+            FindObjectOfType<Clock>().RestartTimer();
+            GameObject.Find("shiftClock").GetComponent<Clock>().enabled = true;            
             dayNum++;
-            MoneyCounter.money = money;
-            GameObject.Find("MoneyCounter").GetComponent<TextMeshProUGUI>().text = "$" + MoneyCounter.money;
+            //GameObject.Find("MoneyCounter").GetComponent<TextMeshProUGUI>().text = "$" + MoneyCounter.money;
         }
+    }
+
+    private void CleanScene()
+    {
+        foreach (Monster monster in FindObjectsOfType<Monster>())
+        {
+            Destroy(monster.gameObject);
+        }
+        Line.instance.queue.Clear();
+        FindObjectOfType<GridDisplay>().ResetShape();
     }
 
     // Update is called once per frame
