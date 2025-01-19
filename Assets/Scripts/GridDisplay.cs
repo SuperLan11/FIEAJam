@@ -13,7 +13,7 @@ public class GridDisplay : MonoBehaviour
     //. = empty
     //X = full
 
-    public List<SpriteRenderer> cartSprites = new List<SpriteRenderer>();
+    public List<SpriteRenderer> cartSprites = new List<SpriteRenderer>();    
     [SerializeField] private Sprite cart3xSprite;
     [SerializeField] private Sprite cart4xSprite;
 
@@ -40,17 +40,8 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
-        List<SpriteRenderer> rawSprites = GetComponentsInChildren<SpriteRenderer>().ToList();        
-        
-        for(int i = 0; i < rawSprites.Count; i++)
-        {
-            // excludes the white square sprites
-            if (rawSprites[i].name.Contains("Cart"))
-                cartSprites.Add(rawSprites[i]);
-        }
-
         if (startPos == Vector2.zero)startPos = transform.position;
-        if (returnPos == Vector2.zero) returnPos = new Vector2(returnX, transform.position.y);
+        if (returnPos == Vector2.zero) returnPos = new Vector2(returnX, transform.position.y);        
 
         var rows = shape.Trim().Split();
         int height = rows.Length;
@@ -81,14 +72,22 @@ public class GridDisplay : MonoBehaviour
         
         ResetFree();
         passengers = new();
+
+        List<SpriteRenderer> rawSprites = GetComponentsInChildren<SpriteRenderer>().ToList();
+        for (int i = 0; i < rawSprites.Count; i++)
+        {
+            // excludes the white square sprites
+            if (rawSprites[i].name.Contains("Cart"))
+                cartSprites.Add(rawSprites[i]);            
+        }        
     }
 
     public void AppendCart()
     {
         if (visibleCarts < cartSprites.Count)
         {
-            visibleCarts++;
             cartSprites[visibleCarts].enabled = true;
+            visibleCarts++;            
         }
         Vector2 newFrontPos = cartFront.transform.position;
         newFrontPos.x += 1f;
@@ -106,6 +105,8 @@ public class GridDisplay : MonoBehaviour
         }
         shape = newShape;
         ResetShape();
+
+        LowerSquares();
     }
 
     public void UpgradeHeight()
@@ -115,8 +116,9 @@ public class GridDisplay : MonoBehaviour
 
         string newShape = shape;
         newShape += '\n';
-        
-        for(int i = 0; i < cartSprites.Count; i++)
+
+        curCartHeight++;
+        for (int i = 0; i < cartSprites.Count; i++)
         {            
             newShape += 'X';
             if (curCartHeight == 3)
@@ -130,24 +132,45 @@ public class GridDisplay : MonoBehaviour
                 cartFront.sprite = cart4xFront;
                 GameObject.Find("Enlarge Cart").GetComponent<TextMeshProUGUI>().text = "MAX";
                 GameObject.Find("Enlarge Cart Price").GetComponent<TextMeshProUGUI>().text = "";
-            }            
-
-            Vector2 newSpritePos = cartSprites[i].transform.position;
-            newSpritePos.y += 0.5f;
-            cartSprites[i].transform.position = newSpritePos;
-        }
-        Vector2 newGroupPos = transform.position;
-        newGroupPos.y -= 0.5f;
+            }           
+        }        
+        //Debug.Log("squareCount: " + squareCount);
+        /*Vector2 newGroupPos = transform.position;
+        newGroupPos.y -= 5f;
         transform.position = newGroupPos;
 
         Vector2 newFrontPos = cartFront.transform.position;
         newFrontPos.y += 0.5f;
-        cartFront.transform.position = newFrontPos;
-
-        curCartHeight++;
+        cartFront.transform.position = newFrontPos;*/
 
         shape = newShape;
         ResetShape();
+
+        LowerSquares();
+    }
+
+    private void LowerSquares()
+    {
+        // do this after reset shape so position changes aren't overriden
+        List<SpriteRenderer> sprites = FindObjectsOfType<SpriteRenderer>().ToList();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            if (sprite.name.Contains("Square"))
+            {
+                if (curCartHeight == 3)
+                {
+                    Vector2 newSpritePos = sprite.transform.position;
+                    newSpritePos.y -= 0.5f;
+                    sprite.transform.position = newSpritePos;
+                }
+                else if (curCartHeight == 4)
+                {
+                    Vector2 newSpritePos = sprite.transform.position;
+                    newSpritePos.y -= 1f;
+                    sprite.transform.position = newSpritePos;
+                }
+            }
+        }
     }
 
     private List<int> gridrowToFreerow(List<bool> gridrow)
@@ -354,6 +377,10 @@ public class GridDisplay : MonoBehaviour
     {
         grid = new();
         free = new();
+        foreach (var record in tiles)
+        {
+            Destroy(record.Value.gameObject);
+        }
         tiles = new();
         Start();
     }

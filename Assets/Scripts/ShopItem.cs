@@ -26,9 +26,7 @@ public class ShopItem : MonoBehaviour
     }    
 
     public void BuyItem()
-    {
-        ColorBlock colorsTest = GetComponent<Button>().colors;
-        Debug.Log("pressed color: " + colorsTest.pressedColor);
+    {        
         if (MoneyCounter.money >= cost)
         {
             GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
@@ -62,7 +60,7 @@ public class ShopItem : MonoBehaviour
             }
             else if (upgrade == "Extend Cart")
             {
-                cartGroup.Send(()=>
+                cartGroup.Send(() =>
                 {
                     cartGroup.AppendCart();
                 });
@@ -83,18 +81,18 @@ public class ShopItem : MonoBehaviour
             {
                 Debug.Log("more rides");
             }            
-        }
-        else
-        {
-            Debug.Log("pressed color red");
-            ColorBlock colors = GetComponent<Button>().colors;
-            colors.pressedColor = Color.red;
-        }
+        }        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        foreach(Button btn in GetComponentsInChildren<Button>())
+        {
+            if (btn.GetComponent<ShopItem>().cost >= MoneyCounter.money)
+                btn.interactable = false;
+            else
+                btn.interactable = true;
+        }
     }
 }
