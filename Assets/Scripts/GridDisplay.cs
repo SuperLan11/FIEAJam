@@ -155,19 +155,22 @@ public class GridDisplay : MonoBehaviour
         List<SpriteRenderer> sprites = FindObjectsOfType<SpriteRenderer>().ToList();
         foreach (SpriteRenderer sprite in sprites)
         {
-            if (sprite.name.Contains("Cart"))
+            if (sprite.name.Contains("Cart") || sprite.name.Contains("front"))
             {
                 if (curCartHeight == 3)
                 {
                     Vector2 newSpritePos = sprite.transform.position;
-                    newSpritePos.y -= 0.5f;
+                    newSpritePos.y += 0.5f;
                     sprite.transform.position = newSpritePos;
+                    transform.position += Vector3.down * 0.7f;
                 }
                 else if (curCartHeight == 4)
                 {
                     Vector2 newSpritePos = sprite.transform.position;
-                    newSpritePos.y -= 1f;
+                    newSpritePos.y += 0.5f;
                     sprite.transform.position = newSpritePos;
+                    transform.position += Vector3.down * 0.7f;
+
                 }
             }
         }
