@@ -11,7 +11,7 @@ public class MenuScript : MonoBehaviour
     public Toggle gambleToggle;
     public void PlayGame()
     {
-        SceneManager.LoadScene("Dev");
+        SceneManager.LoadScene("LandonDev3");
     }
 
     public void OptionsMenu()
