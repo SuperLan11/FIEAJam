@@ -400,7 +400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 941091021739224684, guid: 8292b9193d94a9e4d9e811837d9f7382, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.459807
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 941091021739224684, guid: 8292b9193d94a9e4d9e811837d9f7382, type: 3}
       propertyPath: m_LocalPosition.z
@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: cart4xSprite
       value: 
       objectReference: {fileID: 21300000, guid: 7880ecdea6c58574eb7e2caa28194329, type: 3}
+    - target: {fileID: 8431299438914396337, guid: 8292b9193d94a9e4d9e811837d9f7382, type: 3}
+      propertyPath: visibleCarts
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

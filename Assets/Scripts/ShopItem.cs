@@ -26,7 +26,9 @@ public class ShopItem : MonoBehaviour
     }    
 
     public void BuyItem()
-    {        
+    {
+        ColorBlock colorsTest = GetComponent<Button>().colors;
+        Debug.Log("pressed color: " + colorsTest.pressedColor);
         if (MoneyCounter.money >= cost)
         {
             GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
