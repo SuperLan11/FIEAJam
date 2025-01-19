@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 2229780650622226038}
   - component: {fileID: 7729895153525866582}
   m_Layer: 5
-  m_Name: AntiGhostLevel
+  m_Name: SurpriseBoxLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1290,12 +1290,12 @@ GameObject:
   - component: {fileID: 3781766080627838186}
   - component: {fileID: 7576824205345724585}
   m_Layer: 5
-  m_Name: AntiGhostButton
+  m_Name: SurpriseBoxButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7855997287324229332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1316,7 +1316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -70}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3728808487000478197
@@ -1533,7 +1533,7 @@ GameObject:
   - component: {fileID: 7855898427442792305}
   - component: {fileID: 8773602594838038665}
   m_Layer: 5
-  m_Name: AntiGhost
+  m_Name: Surprise Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Antighost
+  m_text: Surprise Box
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 095aa7725c1801141bfc57bbccd16246, type: 2}
   m_sharedMaterial: {fileID: -6888209071389655306, guid: 095aa7725c1801141bfc57bbccd16246, type: 2}
@@ -1649,7 +1649,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 106.032906, w: 22.422974}
+  m_margin: {x: 0, y: 0, z: 80.38543, w: 22.422974}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3738,7 +3738,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $99999999
+  m_text: $100000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 095aa7725c1801141bfc57bbccd16246, type: 2}
   m_sharedMaterial: {fileID: -6888209071389655306, guid: 095aa7725c1801141bfc57bbccd16246, type: 2}
@@ -3801,7 +3801,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 137.52582, y: 0, z: 103.9309, w: 22.422974}
+  m_margin: {x: 137.52582, y: 0, z: 121.79593, w: 22.422974}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4867,7 +4867,7 @@ GameObject:
   - component: {fileID: 6118058986144845235}
   - component: {fileID: 5244074707742302787}
   m_Layer: 5
-  m_Name: AntiGhost Price
+  m_Name: Surprise Box Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4920,7 +4920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $25
+  m_text: $10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 095aa7725c1801141bfc57bbccd16246, type: 2}
   m_sharedMaterial: {fileID: -6888209071389655306, guid: 095aa7725c1801141bfc57bbccd16246, type: 2}
@@ -5532,21 +5532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4460305f246d9814ca73e2e2e0dadaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockLabel: {fileID: 5038708515512549997}
   endOfDay: 0
-  unlockDays: 01000000010000000200000002000000
-  unlockSprites:
-  - {fileID: 21300000, guid: b0513de10e70d8981b627af1d534339f, type: 3}
-  - {fileID: 21300000, guid: 0780fe602a91f8cae9634d9966a90a9a, type: 3}
-  - {fileID: 21300000, guid: b5bc6e588993fd7649b362b2c655eebd, type: 3}
-  - {fileID: 21300000, guid: dc32f05e7b3e0145db2b781d7aaa81c3, type: 3}
-  unlockPrefabs:
-  - {fileID: 7455564401412425027, guid: 2a8e5ce05152c6852af9127e40853b28, type: 3}
-  - {fileID: 2879298783119690114, guid: a527640cd220752b59b768b89c1fd263, type: 3}
-  - {fileID: 3976633513486157362, guid: 87e8c3cbd261b206a993b2b92932ce8a, type: 3}
-  - {fileID: 849496360854957981, guid: 699dacdfa83d02d3e826a5d9c90a2d27, type: 3}
-  customerImagePrefab: {fileID: 2042706995293868445, guid: 4679c106faaf42c96a42e6deb9464cab, type: 3}
-  customersParent: {fileID: 347984137786702604}
 --- !u!1 &8874352156929897415
 GameObject:
   m_ObjectHideFlags: 0
@@ -5559,7 +5545,7 @@ GameObject:
   - component: {fileID: 6400302011124246802}
   - component: {fileID: 8073744216133740209}
   m_Layer: 5
-  m_Name: AGUpgradeImage
+  m_Name: SBUpgradeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5612,7 +5598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 44600f9c48d41534eb9ef53d4172a7cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

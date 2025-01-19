@@ -33,16 +33,15 @@ public class MoneyCounter : MonoBehaviour
         moneyCounter.text = "$" + money.ToString();
     }
 
-    public IEnumerator MoneyRoll(float rollTime, int endMoney)
+    public IEnumerator MoneyRoll(float rollTime, int startMoney, int endMoney)
     {        
         // the more money you get, the faster the numbers go up
-        yield return new WaitForSeconds(rollTime/(endMoney-money));
+        yield return new WaitForSeconds(rollTime/(endMoney-startMoney));
         int newMoney = int.Parse(moneyCounter.text.Substring(1)) + 1;        
-        // might have a bug if you send a second coaster but the money from first coaster hasn't finished tallying
-        money = newMoney;
+        // might have a bug if you send a second coaster but the money from first coaster hasn't finished tallying 
         moneyCounter.text = "$" + newMoney.ToString();
         if (newMoney < endMoney)
-            StartCoroutine(MoneyRoll(rollTime, endMoney));
+            StartCoroutine(MoneyRoll(rollTime, startMoney, endMoney));
         else
             money = endMoney;
     }
