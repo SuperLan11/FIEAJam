@@ -13,7 +13,7 @@ public class GridDisplay : MonoBehaviour
     //. = empty
     //X = full
 
-    public SpriteRenderer[] cartSprites;
+    public List<SpriteRenderer> cartSprites = new List<SpriteRenderer>();
     [SerializeField] private Sprite cart3xSprite;
     [SerializeField] private Sprite cart4xSprite;
 
@@ -40,7 +40,15 @@ public class GridDisplay : MonoBehaviour
     public bool isTargetable = false;
     void Start()
     {
-        cartSprites = GetComponentsInChildren<SpriteRenderer>();
+        List<SpriteRenderer> rawSprites = GetComponentsInChildren<SpriteRenderer>().ToList();        
+        
+        for(int i = 0; i < rawSprites.Count; i++)
+        {
+            // excludes the white square sprites
+            if (rawSprites[i].name.Contains("Cart"))
+                cartSprites.Add(rawSprites[i]);
+        }
+
         if (startPos == Vector2.zero)startPos = transform.position;
         if (returnPos == Vector2.zero) returnPos = new Vector2(returnX, transform.position.y);
 
@@ -77,7 +85,7 @@ public class GridDisplay : MonoBehaviour
 
     public void AppendCart()
     {
-        if (visibleCarts < cartSprites.Length)
+        if (visibleCarts < cartSprites.Count)
         {
             visibleCarts++;
             cartSprites[visibleCarts].enabled = true;
@@ -109,29 +117,25 @@ public class GridDisplay : MonoBehaviour
         newShape += '\n';
 
         curCartHeight++;        
-        foreach (SpriteRenderer cartSprite in cartSprites)
-        {
-            // excludes the white square sprites
-            if (!cartSprite.name.Contains("Cart"))
-                continue;
-
+        for(int i = 0; i < cartSprites.Count; i++)
+        {            
             newShape += 'X';
             if (curCartHeight == 3)
             {                
-                cartSprite.sprite = cart3xSprite;
+                cartSprites[i].sprite = cart3xSprite;
                 cartFront.sprite = cart3xFront;
             }
             else if (curCartHeight == 4)
             {                                
-                cartSprite.sprite = cart4xSprite;
+                cartSprites[i].sprite = cart4xSprite;
                 cartFront.sprite = cart4xFront;
                 GameObject.Find("Enlarge Cart").GetComponent<TextMeshProUGUI>().text = "MAX";
                 GameObject.Find("Enlarge Cart Price").GetComponent<TextMeshProUGUI>().text = "";
             }            
 
-            Vector2 newSpritePos = cartSprite.transform.position;
+            Vector2 newSpritePos = cartSprites[i].transform.position;
             newSpritePos.y += 0.5f;
-            cartSprite.transform.position = newSpritePos;            
+            cartSprites[i].transform.position = newSpritePos;
         }
         Vector2 newGroupPos = transform.position;
         newGroupPos.y -= 0.5f;
