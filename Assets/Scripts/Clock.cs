@@ -49,4 +49,10 @@ public class Clock : MonoBehaviour
             enabled = false;
         }
     }
+
+    public void ResetClock() {
+        elapsedTime = 0f;
+        nextUpdateTime = 0f;
+        enabled = true; // Re-enable the clock if it was disabled
+    }
 }

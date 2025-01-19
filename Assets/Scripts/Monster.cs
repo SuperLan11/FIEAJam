@@ -123,6 +123,14 @@ public class Monster : MonoBehaviour
 				transform.RotateAround(mousePos, Vector3.back, 90);
 				dragDelta = mousePos - (Vector2)transform.position;
 				rotate90();
+			} else if (Input.GetKeyDown(KeyCode.Q))
+			{
+				Vector2 mousePos = GetMousePosition();
+				transform.RotateAround(mousePos, Vector3.back, -90);
+				dragDelta = mousePos - (Vector2)transform.position;
+				rotate90();
+				rotate90();
+				rotate90();
 			}
 		}
         else if (movementQueue.Count > 0)
