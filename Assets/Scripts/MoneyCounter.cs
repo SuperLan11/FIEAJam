@@ -7,7 +7,7 @@ public class MoneyCounter : MonoBehaviour
 {
     // don't initialize money in start so it persists over different days
     private static int _money = 1000;
-    public static int dayStartMoney;
+    public static int profit;
     public static int money
     {
         set
@@ -25,7 +25,6 @@ public class MoneyCounter : MonoBehaviour
     {
         moneyCounter = GetComponent<TextMeshProUGUI>();        
         moneyCounter.text = "$" + money.ToString();
-        dayStartMoney = money;
     }
 
     public static void MakePurchase(int cost)

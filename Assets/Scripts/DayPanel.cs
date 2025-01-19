@@ -58,9 +58,9 @@ public class DayPanel : MonoBehaviour
         }
         
         
-        int profit = (MoneyCounter.money - MoneyCounter.dayStartMoney);
         //earningsLabel.text = "You earned $" + profit;
-        StartCoroutine(RollMoneyResult(2, profit));
+        StartCoroutine(RollMoneyResult(2, MoneyCounter.profit));
+        MoneyCounter.profit = 0;
         StartCoroutine(WaitToLoad());
     }
 
