@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,7 @@ public class Line : MonoBehaviour
 
     public GameObject zonePrefab;
     public GameObject[] monsterPrefabs;
+    public List<GameObject> unlockedMonsters;
 
     private void Awake()
     {
@@ -29,6 +31,16 @@ public class Line : MonoBehaviour
         for (int i = 0; i < initialZones; i++)
         {
             AddZone();
+        }
+
+        unlockedMonsters = monsterPrefabs.ToList();
+    }
+
+    public void Unlock(List<GameObject> monsters)
+    {
+        foreach (GameObject m in monsters)
+        {
+            unlockedMonsters.Add(m);
         }
     }
 
@@ -72,7 +84,7 @@ public class Line : MonoBehaviour
     {
         if (Random.Range(1, 40) == 1 && queue.Count < waypoints.Count)
         {
-            GameObject monster = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
+            GameObject monster = unlockedMonsters[Random.Range(0, unlockedMonsters.Count)];
             Spawn(monster);
         }
 

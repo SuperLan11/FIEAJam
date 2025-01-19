@@ -60,14 +60,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialZones: 2
+  queue: []
   zonePrefab: {fileID: 5431365622398452339, guid: 607d8b085e008fe4986db23aebdca7d6, type: 3}
   monsterPrefabs:
   - {fileID: 2206495360988385684, guid: 7f8a528ea73b1d2b4ac2434b182848a2, type: 3}
   - {fileID: 3996245303974017329, guid: f22221d3631a2ecef93cfd80c9105fd6, type: 3}
   - {fileID: 306720374868243813, guid: cd97176bfa34140d6ae7f3b919d0cc82, type: 3}
-  - {fileID: 849496360854957981, guid: 699dacdfa83d02d3e826a5d9c90a2d27, type: 3}
-  - {fileID: 2879298783119690114, guid: a527640cd220752b59b768b89c1fd263, type: 3}
-  - {fileID: 7455564401412425027, guid: 2a8e5ce05152c6852af9127e40853b28, type: 3}
+  unlockedMonsters: []
 --- !u!1001 &1084394057274284807
 PrefabInstance:
   m_ObjectHideFlags: 0

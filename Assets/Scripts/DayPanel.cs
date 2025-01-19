@@ -9,11 +9,19 @@ public class DayPanel : MonoBehaviour
 {
     private TextMeshProUGUI dayLabel;
     private TextMeshProUGUI earningsLabel;
+    public TextMeshProUGUI unlockLabel;
     private GameObject endDayPanel;
 
     public static int dayNum = 1;
     private int moneyDisplay = 0;
     public bool endOfDay = false;
+
+
+    public int[] unlockDays;
+    public Sprite[] unlockSprites;
+    public GameObject[] unlockPrefabs;
+    public GameObject customerImagePrefab;
+    public GameObject customersParent;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +37,27 @@ public class DayPanel : MonoBehaviour
         dayLabel.alpha = 1f;
         dayLabel.text = "Day " + dayNum + " is over";
         earningsLabel.alpha = 1f;
+        unlockLabel.alpha = 1f;
+        customersParent.SetActive(true);
+        foreach (Transform t in customersParent.transform)
+        {
+            Destroy(t.gameObject);
+        }
+
+        for (int i = 0; i < unlockDays.Length; i++)
+        {
+            List<GameObject> unlocks = new();
+            if (unlockDays[i] == dayNum)
+            {
+                GameObject obj = Instantiate(customerImagePrefab, customersParent.transform);
+                obj.GetComponent<Image>().sprite = unlockSprites[i];
+                unlocks.Add(unlockPrefabs[i]);
+            }
+            
+            Line.instance.Unlock(unlocks);
+        }
+        
+        
         int profit = (MoneyCounter.money - MoneyCounter.dayStartMoney);
         //earningsLabel.text = "You earned $" + profit;
         StartCoroutine(RollMoneyResult(2, profit));
@@ -59,7 +88,9 @@ public class DayPanel : MonoBehaviour
             CleanScene();
             endDayPanel.GetComponent<Image>().enabled = false;
             dayLabel.alpha = 0f;            
-            earningsLabel.alpha = 0f;            
+            earningsLabel.alpha = 0f;
+            unlockLabel.alpha = 0f;
+            customersParent.SetActive(false);
             GameObject.Find("shiftClock").GetComponent<Clock>().enabled = true;
             GameObject.Find("shiftClock").GetComponent<Clock>().ResetClock();            
 
