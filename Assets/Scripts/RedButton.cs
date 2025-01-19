@@ -26,11 +26,8 @@ public class RedButton : MonoBehaviour
         Coaster.isLeaving = true;
         cart.Send(() => { });
 
-        int randIdx = Random.Range(0, screamSfxs.Length);
-        int randScream = Random.Range(0, 7);
-        if (randScream == 0) {
-            screamSfxs[randIdx].Play();
-        }
+        int randIdx = Random.Range(0, screamSfxs.Length);        
+        screamSfxs[randIdx].Play();
     }
 
     // Update is called once per frame
