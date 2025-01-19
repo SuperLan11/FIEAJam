@@ -87,11 +87,16 @@ public class Monster : MonoBehaviour
 			transform.position = GetMousePosition() - dragDelta;
 		}
         else if (movementQueue.Count > 0)
-        {            
+        {
             transform.position = Vector3.MoveTowards(transform.position, movementQueue.Peek(), Time.deltaTime*4);
 
             if (Vector3.Distance(transform.position, movementQueue.Peek()) < 0.01f)
 	            movementQueue.Dequeue();
+
+            if (Input.GetKeyDown("E"))
+            {
+	            
+            }
         }
     }
 
