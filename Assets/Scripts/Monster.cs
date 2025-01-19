@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
@@ -15,6 +17,36 @@ public class Monster : MonoBehaviour
 	public int id = 0;
 
 	private SpriteRenderer sprite;
+
+	private void rotate90()
+	{
+		List<List<bool>> newGrid = new();
+
+		for (int i = 0; i < grid[0].Count; i++)
+		{
+			List<bool> row = new();
+			for (int j = 0; j < grid.Count; j++)
+			{
+				row.Add(false);
+			}
+			newGrid.Add(row);
+		}
+		
+		for (var i = 0; i < grid.Count; i++)
+		{
+			for (int j = 0; j < grid[0].Count; j++)
+			{
+				newGrid[j][i] = grid[i][j];
+			}
+		}
+
+		foreach (var row in newGrid)
+		{
+			row.Reverse();
+		}
+
+		grid = newGrid;
+	}
 
 	public void Start()
 	{
@@ -65,7 +97,7 @@ public class Monster : MonoBehaviour
 			Vector2 pos = display.AttemptRide(this, out bool found);
 			if (found)
 			{
-				transform.position = pos;
+				transform.position = pos - GetBottomLeftOffset();
 				transform.SetParent(FindObjectOfType<GridDisplay>().transform);				
 				
 				if (snapSfx != null)
@@ -85,6 +117,13 @@ public class Monster : MonoBehaviour
 		if (isDragging)
 		{
 			transform.position = GetMousePosition() - dragDelta;
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				Vector2 mousePos = GetMousePosition();
+				transform.RotateAround(mousePos, Vector3.back, 90);
+				dragDelta = mousePos - (Vector2)transform.position;
+				rotate90();
+			}
 		}
         else if (movementQueue.Count > 0)
         {
@@ -92,11 +131,6 @@ public class Monster : MonoBehaviour
 
             if (Vector3.Distance(transform.position, movementQueue.Peek()) < 0.01f)
 	            movementQueue.Dequeue();
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-	            
-            }
         }
     }
 
@@ -110,5 +144,15 @@ public class Monster : MonoBehaviour
 	public void UnGray()
 	{
 		GetComponentInChildren<SpriteRenderer>().color = Color.white;
+	}
+
+	private Vector2 GetBottomLeftOffset()
+	{
+		return Vector2.left * (grid[0].Count-1) * 0.5f + Vector2.down * (grid.Count-1) * 0.5f;
+	}
+
+	public Vector2 GetBottomLeftCorner()
+	{
+		return (Vector2)transform.position + GetBottomLeftOffset();
 	}
 }
