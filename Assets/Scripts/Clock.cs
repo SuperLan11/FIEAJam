@@ -10,8 +10,8 @@ public class Clock : MonoBehaviour
     private int endHour = 17;
     private int endMinute = 0;
     private float elapsedTime = 0f;
-    private float totalTime = 120f; // 2 minutes in real time
-    //private float totalTime = 4f; // 4 seconds in real time
+    //private float totalTime = 120f; // 2 minutes in real time
+    private float totalTime = 4f;
     private float updateInterval = 120f / (8f * 12f); // 5 minutes in game time converted to real time
     private float nextUpdateTime = 0f;
 
@@ -43,5 +43,15 @@ public class Clock : MonoBehaviour
             FindObjectOfType<DayPanel>().EndDay();
             enabled = false;
         }
+    }
+
+    public void RestartTimer()
+    {
+        startHour = 9;
+        startMinute = 0;
+        endHour = 17;
+        endMinute = 0;
+        elapsedTime = 0f;
+        clockText.text = "9:00 AM";
     }
 }

@@ -8,7 +8,7 @@ public class Line : MonoBehaviour
     private List<GameObject> waypoints = new();
     public int initialZones = 2;
     private int zones = 0;
-    private List<Monster> queue = new();
+    public List<Monster> queue = new();
 
     public static Line instance;
 

@@ -412,6 +412,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2370564771508816199, guid: 32fc453962896da44837b31a24391062, type: 3}
+      propertyPath: m_text
+      value: You earned $0
+      objectReference: {fileID: 0}
     - target: {fileID: 2632973180539492341, guid: 32fc453962896da44837b31a24391062, type: 3}
       propertyPath: cart
       value: 
