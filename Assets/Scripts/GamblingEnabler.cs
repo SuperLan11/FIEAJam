@@ -8,9 +8,9 @@ public class GamblingEnabler : MonoBehaviour
     [SerializeField] GameObject gamblingBox;
     public void Start()
     {
-        if (PlayerPrefs.GetInt("gamble") == 0)
+        if (PlayerPrefs.GetInt("gamble") == 1)
             {
-                gamblingBox.SetActive(false);
+                gamblingBox.SetActive(true);
             }
     }
 }
