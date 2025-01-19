@@ -12,8 +12,13 @@ public class Clock : MonoBehaviour
     private float elapsedTime = 0f;
     private float totalTime = 120f; // 2 minutes in real time
     //private float totalTime = 4f; // 4 seconds in real time
-    private float updateInterval = 120f / (8f * 12f); // 5 minutes in game time converted to real time
+    private float updateInterval; // 5 minutes in game time converted to real time
     private float nextUpdateTime = 0f;
+
+    void Start()
+    {
+        updateInterval = totalTime / (8f * 12f);
+    }
 
     void Update() {
         elapsedTime += Time.deltaTime;
