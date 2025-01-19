@@ -5,7 +5,7 @@ public class MainCamera : MonoBehaviour
     public static MainCamera instance;
     public new Camera camera;
 
-    public void Start()
+    public void Awake()
     {
         instance = this;
     }

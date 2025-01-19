@@ -60,7 +60,7 @@ public class ShopItem : MonoBehaviour
             }
             else if (upgrade == "Extend Cart")
             {
-                cartGroup.Send(()=>
+                cartGroup.Send(() =>
                 {
                     cartGroup.AppendCart();
                 });
