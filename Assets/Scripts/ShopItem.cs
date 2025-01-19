@@ -73,7 +73,8 @@ public class ShopItem : MonoBehaviour
             }
             else if (upgrade == "Surprise Box")
             {
-                Debug.Log("Loot Box");
+                Debug.Log("surprise box");
+                Debug.Log(RollLootBox());
             }
             else if (upgrade == "Buy Disney")
             {
@@ -92,5 +93,24 @@ public class ShopItem : MonoBehaviour
             else
                 btn.interactable = true;
         }
+    }
+    
+    public string RollLootBox()
+    {
+        int roll = Random.Range(1, 100);
+        if (roll <= 10) {
+            return "Whoa! Legendary!"; // legendary
+            //yellow
+        } else if (11 <= roll && roll <= 20) {
+            return "Epic!"; // epic
+            //pink, aqua
+        } else if (21 <= roll && roll <= 50) {
+            return "Rare!"; // rare
+            //blue, orange, purple
+        } else if (51 <= roll && roll <= 100) {
+            return "A common..."; // common
+            //grey, red, green
+        }
+        return "roll test"; // default case
     }
 }
