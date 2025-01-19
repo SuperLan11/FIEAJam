@@ -184,6 +184,10 @@ public class GridDisplay : MonoBehaviour
 
     public void Send(ThreadStart upgradeCallback)
     {
+        if (!canSend)
+        {
+            return;
+        }
         canSend = false;
         int filled = 0;
         int total = 0;
