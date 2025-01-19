@@ -6,7 +6,7 @@ using TMPro;
 public class MoneyCounter : MonoBehaviour
 {
     // don't initialize money in start so it persists over different days
-    private static int _money = 1000;
+    private static int _money = 10;
     public static int profit;
     public static int money
     {
