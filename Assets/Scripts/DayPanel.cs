@@ -58,8 +58,10 @@ public class DayPanel : MonoBehaviour
         }
         
         
+        // do total profit variable instead
         int profit = (MoneyCounter.money - MoneyCounter.dayStartMoney);
-        //earningsLabel.text = "You earned $" + profit;
+        //earningsLabel.text = "You earned $" + profit;        
+        moneyDisplay = 0;
         StartCoroutine(RollMoneyResult(2, profit));
         StartCoroutine(WaitToLoad());
     }
@@ -92,7 +94,8 @@ public class DayPanel : MonoBehaviour
             unlockLabel.alpha = 0f;
             customersParent.SetActive(false);
             GameObject.Find("shiftClock").GetComponent<Clock>().enabled = true;
-            GameObject.Find("shiftClock").GetComponent<Clock>().ResetClock();            
+            GameObject.Find("shiftClock").GetComponent<Clock>().ResetClock();
+            MoneyCounter.dayStartMoney = money;
 
             dayNum++;            
         }
