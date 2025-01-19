@@ -33,6 +33,7 @@ public class DayPanel : MonoBehaviour
 
     public void EndDay()
     {
+        endOfDay = false;
         FindObjectOfType<MouseHandler>().dragInProgress = false;
         endDayPanel.GetComponent<Image>().enabled = true;
         dayLabel.alpha = 1f;

@@ -162,14 +162,14 @@ public class GridDisplay : MonoBehaviour
                     Vector2 newSpritePos = sprite.transform.position;
                     newSpritePos.y += 0.5f;
                     sprite.transform.position = newSpritePos;
-                    transform.position += Vector3.down * 0.7f;
+                    transform.position += Vector3.down * 1f;
                 }
                 else if (curCartHeight == 4)
                 {
                     Vector2 newSpritePos = sprite.transform.position;
                     newSpritePos.y += 0.5f;
                     sprite.transform.position = newSpritePos;
-                    transform.position += Vector3.down * 1.1f;
+                    transform.position += Vector3.down * 1.2f;
                 }
             }
         }
