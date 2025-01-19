@@ -7031,9 +7031,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockLabel: {fileID: 5038708515512549997}
   endOfDay: 0
-  unlockDays: 
-  unlockSprites: []
-  unlockPrefabs: []
+  unlockDays: 01000000010000000200000002000000020000000300000003000000
+  unlockSprites:
+  - {fileID: 21300000, guid: c6fe6ce72dfd3af049c14de563b3e2b3, type: 3}
+  - {fileID: 21300000, guid: b0513de10e70d8981b627af1d534339f, type: 3}
+  - {fileID: 21300000, guid: 0780fe602a91f8cae9634d9966a90a9a, type: 3}
+  - {fileID: 21300000, guid: 8b4cae571dd6c36aa805cafea2e78570, type: 3}
+  - {fileID: 21300000, guid: 0780fe602a91f8cae9634d9966a90a9a, type: 3}
+  - {fileID: 21300000, guid: dc32f05e7b3e0145db2b781d7aaa81c3, type: 3}
+  - {fileID: 21300000, guid: b5bc6e588993fd7649b362b2c655eebd, type: 3}
+  unlockPrefabs:
+  - {fileID: 2125361082162340215, guid: 772935f552bfe0e89b51cf5e960df6a6, type: 3}
+  - {fileID: 7455564401412425027, guid: 2a8e5ce05152c6852af9127e40853b28, type: 3}
+  - {fileID: 2879298783119690114, guid: a527640cd220752b59b768b89c1fd263, type: 3}
+  - {fileID: 4883063558548355682, guid: b5256fdd3fd5d82ab8a5c012fc9990c5, type: 3}
+  - {fileID: 2879298783119690114, guid: a527640cd220752b59b768b89c1fd263, type: 3}
+  - {fileID: 3976633513486157362, guid: 87e8c3cbd261b206a993b2b92932ce8a, type: 3}
+  - {fileID: 849496360854957981, guid: 699dacdfa83d02d3e826a5d9c90a2d27, type: 3}
   customerImagePrefab: {fileID: 2042706995293868445, guid: 4679c106faaf42c96a42e6deb9464cab, type: 3}
   customersParent: {fileID: 347984137786702604}
 --- !u!1 &8874352156929897415
