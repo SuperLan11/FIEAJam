@@ -176,7 +176,7 @@ public class GridDisplay : MonoBehaviour
     }
 
     private List<Monster> passengers;
-    public bool canSend = false;
+    public bool canSend = true;
 
     public void Send(ThreadStart upgradeCallback)
     {
