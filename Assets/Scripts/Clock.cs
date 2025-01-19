@@ -10,7 +10,7 @@ public class Clock : MonoBehaviour
     private int endHour = 17;
     private int endMinute = 0;
     private float elapsedTime = 0f;
-    private float totalTime = 120f; // 2 minutes in real time
+    private float totalTime = 80f; // 2 minutes in real time
     //private float totalTime = 4f; // 4 seconds in real time
     private float updateInterval; // 5 minutes in game time converted to real time
     private float nextUpdateTime = 0f;
