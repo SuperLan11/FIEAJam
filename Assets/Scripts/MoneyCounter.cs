@@ -23,8 +23,8 @@ public class MoneyCounter : MonoBehaviour
     void Start()
     {
         moneyCounter = GetComponent<TextMeshProUGUI>();
-        money = 500;
-        moneyCounter.text = "$500";
+        money = 10;
+        moneyCounter.text = "$10";
     }
 
     public static void MakePurchase(int cost)
