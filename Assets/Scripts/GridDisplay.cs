@@ -199,6 +199,7 @@ public class GridDisplay : MonoBehaviour
         if (filled == total)
         {
             profit += 10;
+            
         }
         return profit;
     }
