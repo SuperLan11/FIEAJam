@@ -13,6 +13,7 @@ public class DayPanel : MonoBehaviour
 
     public static int dayNum = 1;
     private int moneyDisplay = 0;
+    public bool endOfDay = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,9 @@ public class DayPanel : MonoBehaviour
             endDayPanel.GetComponent<Image>().enabled = false;
             dayLabel.alpha = 0f;            
             earningsLabel.alpha = 0f;            
-            GameObject.Find("shiftClock").GetComponent<Clock>().enabled = true;            
+            GameObject.Find("shiftClock").GetComponent<Clock>().enabled = true;
+            GameObject.Find("shiftClock").GetComponent<Clock>().ResetClock();            
+
             dayNum++;            
         }
     }

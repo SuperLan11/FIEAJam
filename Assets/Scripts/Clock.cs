@@ -43,9 +43,9 @@ public class Clock : MonoBehaviour
             nextUpdateTime += updateInterval;
         }
 
-        if (elapsedTime >= totalTime) 
-        {            
-            FindObjectOfType<DayPanel>().EndDay();
+        if (elapsedTime >= totalTime)
+        {
+            FindObjectOfType<DayPanel>().endOfDay = true;
             enabled = false;
         }
     }

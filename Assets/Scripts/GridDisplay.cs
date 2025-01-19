@@ -247,11 +247,17 @@ public class GridDisplay : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, endPos, cartAccel);
         }
         transform.position = returnPos;
+        bool hasAnyone = passengers.Count != 0;
         passengers.ForEach(monster => Destroy(monster.gameObject));
         passengers.Clear();
-
+        
         upgradeCallback.Invoke();
         // teleport then come back
+        var panel = FindObjectOfType<DayPanel>();
+        if (panel.endOfDay && hasAnyone)
+        {
+            panel.EndDay();
+        }
 
         while (Mathf.Abs(transform.position.x - startPos.x) > 0.08f)
         {
