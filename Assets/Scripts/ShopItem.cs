@@ -31,6 +31,14 @@ public class ShopItem : MonoBehaviour
         Debug.Log("pressed color: " + colorsTest.pressedColor);
         if (MoneyCounter.money >= cost)
         {
+            GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
+            if (upgrade == "Enlarge Cart" || upgrade == "Extend Cart") 
+            {
+                if (!cartGroup.canSend)
+                {
+                    return;
+                }            
+            }
             ColorBlock colors = GetComponent<Button>().colors;
             colors.pressedColor = Color.grey;
 
@@ -44,10 +52,9 @@ public class ShopItem : MonoBehaviour
             upgradeLevel++;
             levelLabel.text = "LV " + upgradeLevel;
 
-            GridDisplay cartGroup = FindObjectOfType<GridDisplay>();
 
             if (upgrade == "Enlarge Cart")
-            {               
+            {             
                 cartGroup.Send(()=>
                 {
                     cartGroup.UpgradeHeight();
