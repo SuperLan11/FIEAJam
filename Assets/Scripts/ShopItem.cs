@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class ShopItem : MonoBehaviour
     {        
         if (MoneyCounter.money >= cost)
         {
+            ColorBlock colors = GetComponent<Button>().colors;
+            colors.pressedColor = Color.grey;
+
             MoneyCounter.MakePurchase(cost);
             cost += 5;
             costLabel.text = "$" + cost.ToString();
@@ -70,6 +74,12 @@ public class ShopItem : MonoBehaviour
             {
                 Debug.Log("more rides");
             }            
+        }
+        else
+        {
+            Debug.Log("pressed color red");
+            ColorBlock colors = GetComponent<Button>().colors;
+            colors.pressedColor = Color.red;
         }
     }
 
