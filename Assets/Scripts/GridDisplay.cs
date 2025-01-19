@@ -281,7 +281,7 @@ public class GridDisplay : MonoBehaviour
     //if found, registers the monster as on the ride
     public Vector2 AttemptRide(Monster monster, out bool found)
     {
-        Vector2 position = monster.transform.position;
+        Vector2 position = monster.GetBottomLeftCorner();
         var shape = monster.grid;
         foreach (var record in tiles)
         {
