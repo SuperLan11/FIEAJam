@@ -115,8 +115,7 @@ public class GridDisplay : MonoBehaviour
 
         string newShape = shape;
         newShape += '\n';
-
-        curCartHeight++;        
+        
         for(int i = 0; i < cartSprites.Count; i++)
         {            
             newShape += 'X';
@@ -144,6 +143,8 @@ public class GridDisplay : MonoBehaviour
         Vector2 newFrontPos = cartFront.transform.position;
         newFrontPos.y += 0.5f;
         cartFront.transform.position = newFrontPos;
+
+        curCartHeight++;
 
         shape = newShape;
         ResetShape();
