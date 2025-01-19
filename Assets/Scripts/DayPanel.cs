@@ -63,6 +63,8 @@ public class DayPanel : MonoBehaviour
         StartCoroutine(RollMoneyResult(2, MoneyCounter.profit));
         MoneyCounter.profit = 0;
         StartCoroutine(WaitToLoad());
+
+        FindObjectOfType<GridDisplay>().ResetShape();
     }
 
     public IEnumerator RollMoneyResult(float rollTime, int profit)
