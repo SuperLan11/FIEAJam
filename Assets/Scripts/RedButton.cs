@@ -7,9 +7,12 @@ public class RedButton : MonoBehaviour
     private AudioSource buttonSfx;
     public GridDisplay cart;
 
+    private AudioSource[] screamSfxs;
+
     // Start is called before the first frame update
     void Start()
     {
+        screamSfxs = FindObjectOfType<GridDisplay>().GetComponents<AudioSource>();
         buttonSfx = GetComponent<AudioSource>();
     }
 
@@ -22,6 +25,9 @@ public class RedButton : MonoBehaviour
         buttonSfx.Play();
         Coaster.isLeaving = true;
         cart.Send(() => { });
+
+        int randIdx = Random.Range(0, screamSfxs.Length);
+        screamSfxs[randIdx].Play();
     }
 
     // Update is called once per frame

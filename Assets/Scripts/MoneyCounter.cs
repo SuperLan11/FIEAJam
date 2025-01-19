@@ -5,8 +5,9 @@ using TMPro;
 
 public class MoneyCounter : MonoBehaviour
 {
-
-    private static int _money;
+    // don't initialize money in start so it persists over different days
+    private static int _money = 10;
+    public static int dayStartMoney = 10;
     public static int money
     {
         set
@@ -22,9 +23,9 @@ public class MoneyCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyCounter = GetComponent<TextMeshProUGUI>();
-        money = 10;
-        moneyCounter.text = "$10";
+        moneyCounter = GetComponent<TextMeshProUGUI>();        
+        moneyCounter.text = "$" + money.ToString();
+        dayStartMoney = money;
     }
 
     public static void MakePurchase(int cost)

@@ -145,7 +145,6 @@ public class GridDisplay : MonoBehaviour
 
         shape = newShape;
         ResetShape();
-
         LowerSquares();
     }
 

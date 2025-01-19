@@ -66,7 +66,7 @@ public class Monster : MonoBehaviour
 			if (found)
 			{
 				transform.position = pos;
-				transform.SetParent(FindObjectOfType<GridDisplay>().transform);
+				transform.SetParent(FindObjectOfType<GridDisplay>().transform);				
 				
 				if (snapSfx != null)
 					snapSfx.Play();
