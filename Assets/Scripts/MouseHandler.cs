@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseHandler : MonoBehaviour
 {
-    private bool dragInProgress = false;
+    public bool dragInProgress = false;
     private Monster draggedMonster;
     void Start()
     {
