@@ -1,7 +1,14 @@
-Our FIEA 2025 game jam entry.
+## Project Background
+A Short Squeeze is a 2D game made in Unity by a team of four.
+The game was created for the 2024 FIEA Game Jam in Orlando, which lasted from Friday January 17th to Sunday January 19th.
+The game jam had the theme of "Theme Parks" and spanned about 45 hours.
 
-Team members:
-- Craig White
-- Landon Johnson
-- Rafael Casanova-Silva
-- Dani Rojas Gonzalez
+## How to Play the Game
+Click the green code button, download the ZIP, and extract the folder. 
+Then open the Game folder in the extracted folder, and open shortsqueeze.exe to start the game.
+
+## Team Contributions
+- Craig White: Lead Programmer
+- Landon Johnson: Co-programmer, composer
+- Rafael Casanova-Silva: Designer
+- Dani Rojas Gonzalez: Artist
