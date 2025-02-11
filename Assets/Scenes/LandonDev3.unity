@@ -434,15 +434,7 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1092519935683391910, guid: 32fc453962896da44837b31a24391062, type: 3}
-      propertyPath: unlockDays.Array.data[6]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1092519935683391910, guid: 32fc453962896da44837b31a24391062, type: 3}
       propertyPath: unlockDays.Array.data[7]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1092519935683391910, guid: 32fc453962896da44837b31a24391062, type: 3}
-      propertyPath: unlockDays.Array.data[8]
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1092519935683391910, guid: 32fc453962896da44837b31a24391062, type: 3}
