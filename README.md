@@ -10,5 +10,5 @@ Then open the Game folder in the extracted folder, and open shortsqueeze.exe to 
 ## Team Contributions
 - Craig White: Lead Programmer
 - Landon Johnson: Co-programmer, composer
-- Rafael Casanova-Silva: Designer
+- Rafael Casanova-Silva: Designer, some coding
 - Dani Rojas Gonzalez: Artist
