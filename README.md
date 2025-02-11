@@ -5,7 +5,7 @@ The game jam had the theme of "Theme Parks" and spanned about 45 hours.
 
 ## How to Play the Game
 Click the green code button, download the ZIP, and extract the folder. 
-Then open the Game folder in the extracted folder, and open shortsqueeze.exe to start the game.
+Then open the Game folder in the extracted folder, and open FIEA2025.exe to start the game.
 
 ## Team Contributions
 - Craig White: Lead Programmer
